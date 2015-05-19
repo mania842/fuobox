@@ -1,0 +1,11 @@
+<application>
+  <display-name>fuobox</display-name>
+
+  <module>
+    <web>
+      <web-uri>fuobox.war</web-uri>
+      <context-root>/fuobox</context-root>
+    </web>
+  </module>
+
+</application>

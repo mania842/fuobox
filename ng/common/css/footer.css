@@ -1,0 +1,110 @@
+.web-landing-footer {
+	position: absolute;
+	height: 4em;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+/*
+	ios mode - scroll issue;
+*/
+.web-landing-footer.ios {
+	position: fixed;
+}
+.web-landing-footer-menubar {
+	text-align: right;
+	position: absolute;
+	bottom: 1em;
+	left: 0;
+	right: 0;
+	background-color: #008537;
+	color: #000000;
+	height: 3em;
+	overflow: hidden;
+	display: table;
+	width: 100%;
+}
+.web-landing-footer-menubar.fuobox {
+	background-color: #dd2f3c;
+}
+.web-landing-footer-menubar > span {
+	display: table-cell;
+	color: #ffffff;
+	vertical-align: middle;
+	text-align: center;
+	margin: 0 .1em;
+	width: 20%;
+    /* border-top: 1px solid #808080; */
+	border-right: 1px solid #ffffff;
+	cursor: pointer;
+}
+.web-landing-footer-menubar > span:last-child {
+    border-right: none;
+}
+/*	Hovering only on Desktops and laptops */
+@media only screen and (min-device-width : 1224px)
+{
+	.web-landing-footer-menubar > span:HOVER {
+		background-color: #00bc4e;
+	}
+	.web-landing-footer-menubar.fuobox > span:HOVER {
+		background-color: #ff606c;
+	}
+	340d10
+}
+.web-landing-footer-menubar > span:ACTIVE
+{
+	background-color: #002e13;
+	color: #fff;
+}
+.web-landing-footer-menubar.fuobox > span:ACTIVE {
+		background-color: #340d10;
+		color: #fff;
+	}
+.web-landing-footer-menubar > span.activeTab {
+    background-color: #006229;
+    color: #fff;
+}
+.web-landing-footer-menubar > span.disabledTab {
+    background-color: #CCC;
+	color: #777;
+	cursor: default;
+}
+.web-landing-footer-menubar label
+{
+	display: block;
+}
+
+/******************************
+ * Footer - legal
+ */
+
+.web-landing-footer-legal
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1em;
+    overflow: hidden;
+    background-color: #004b1f;
+    text-align: center;
+    display: table;
+    width: 100%;
+}
+
+.web-landing-footer-legal span
+{
+    color: #ffffff;
+    font-size: .8em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* @MEDIA (max-width: 414px)
+{
+    .web-landing-footer-legal span
+    {
+        font-size: .6em;
+    }
+} */

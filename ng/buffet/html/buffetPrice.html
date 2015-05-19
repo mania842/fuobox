@@ -1,0 +1,16 @@
+<div class="center-screen">
+	<h1>Prices</h1>
+	<table class="price-table">
+		<tr ng-repeat="price in data.PRICES">
+			<td class="right-align"><span ng-bind-html="price.NAME"></span></td>
+			<td class="left-align"><span ng-bind-html="price.PRICE"></span></td>
+		</tr>
+		<tr><td></td></tr>
+		<tr ng-repeat="price in data.PRICES_1">
+			<td class="right-align" ng-show="price.PRICE"><span ng-style="{{price.STYLE}}" ng-bind-html="price.NAME"></span></td>
+			<td class="left-align" ng-show="price.PRICE"><span ng-bind-html="price.PRICE"></span></td>
+			
+			<td colspan="2" ng-show="!price.PRICE"><span ng-style="{{price.STYLE}}" ng-bind-html="price.NAME"></span></td>
+		</tr>
+	</table>
+</div>

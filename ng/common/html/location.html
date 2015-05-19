@@ -1,0 +1,35 @@
+<div class="center-screen location" on-size-changed="logResize">
+  <h1>Location</h1>
+  <div class="location-map" ng-style="setMapHeight()">
+  	<my-map set-current="false" long="{{data.LOCATION.LONG}}" lang="{{data.LOCATION.LANG}}"/><br>
+  </div>
+  <a href="{{data.LOCATION.MAP}}">View Larger Map</a>
+  
+  <div>
+  	<img class="logo" ng-src="{{$root.admin.web.logo}}" ng-show="$root.admin.web.logo" ng-style="{{$root.admin.web.STYLE.TITLE}}"/>
+  </div>
+  <pre class="address">{{data.getAddress2()}}</pre>
+  <a class="phone" href='{{data.CALL}}' ng-show="$root.admin.appService.isDevice">{{data.PHONE}}</a>
+  <span class="phone" ng-show="!$root.admin.appService.isDevice">{{data.PHONE}}</span>
+  
+  <div class="checkOpen">
+  	<span class="open" ng-show="$root.admin.appService.isOpen">Open Today</span>
+  	<span class="close" ng-show="!$root.admin.appService.isOpen">Close Today</span>
+  </div>
+  <table class="openhours-table">
+  	<thead>
+  		<tr>
+  			<th class="indicator" ng-show="openHoursDP.length > 1"></th>
+  			<th>Day</th>
+  			<th>Open Hours</th>
+  		</tr>
+  	</thead>
+  	<tr ng-repeat="openhour in openHoursDP" ng-class="{even: $index%2 == 1}">
+  		<td class="indicator" ng-show="openHoursDP.length > 1"><span ng-show="openhour.INCLUDING_DAYS.indexOf(vars.todayStr) > -1">&#9658;</span></td>
+  		<td>{{openhour.DAY}}</td>
+  		<td>{{openhour.HOURS}}</td>
+  	</tr>
+  </table>
+  <br><br><br>
+  
+</div>

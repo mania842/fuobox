@@ -1,0 +1,37 @@
+<div id="web-landing-header" class="web-landing-header" ng:controller="webHeaderController" ng-class="{ios : appService.deviceOS == 'iOS'}">
+	<!-- Header -->
+	<div class="web-landing-header-header" ng-style="{{$root.admin.web.STYLE.HEADER_BG_STYLE}}">
+		<div class="web-landing-header-header-title">
+			<img ng:click="redirectToHome()"
+			ng-src="{{$root.admin.web.logo}}" ng-show="$root.admin.web.logo" ng-style="{{$root.admin.web.STYLE.TITLE}}"/>
+			<label1>{{hs.header}}</label1>
+		</div>
+		<span>{{$root.admin.web.getAddress()}}</span>
+		
+		
+		<!-- <div class="web-landing-header-line2" />
+		<div class="web-landing-header-line1" /> -->
+		<div class="web-landing-header-menubar">
+			
+			<h1 ng-style="getHeaderStyle()">{{hs.title}}</h1>
+			<!-- <div class="csmd-header-title-message"
+				ng-show="hs.isMobile && hs.message.length > 0">{{hs.message}}
+			</div>
+			<div class="web-landing-header-rhs">
+				<small><small><small>
+				<button class="csmd-button" ng-click="bones.redirect('/report/UploadReport')" ng:show="$root.csmd.user.hasRole('ADMIN')">Upload Report File</button>
+				</small></small></small>
+			</div> -->
+		</div>
+		<!-- <div id="spinner" ng-style="getTop()" ng-show="hs.isLoading"></div>
+		<popdown></popdown> -->
+	</div>
+	<div class="web-landing-header-menubar-line" ng-style="{{$root.admin.web.STYLE.DARK_LINE}}">
+		<a class="phone" href='{{hs.CALL}}' ng-show="$root.admin.appService.isDevice">{{hs.PHONE}}</a>
+		<span class="phone" ng-show="!$root.admin.appService.isDevice">{{hs.PHONE}}</span>
+		<span class="open" ng-show="$root.admin.appService.isOpen">Open</span>
+  		<span class="close" ng-show="!$root.admin.appService.isOpen">Close</span>
+  		<span class="openhours">: {{$root.admin.web.openHours[$root.admin.web.todayStr].OPEN_HOURS_STR}}</span>
+		
+	</div>
+</div>

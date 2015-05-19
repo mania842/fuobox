@@ -1,0 +1,16 @@
+<div id="web-landing-footer" class="web-landing-footer" ng:controller="webFooterController" ng-class="{ios : appService.deviceOS == 'iOS'}">
+
+  <!-- Icon based menubar at the footer -->
+  <nav class="web-landing-footer-menubar" ng-class="{fuobox: $root.admin.web.DOMAIN == 'fuobox'}">
+		<span ng-repeat="item in items"
+			ng-class="{activeTab : isSelected(item)}"
+			ng-click="buttonClicked(item)">
+			<label>{{item.NAME}}</label>
+		</span>
+	</nav>
+  
+  <!-- Legal notice -->
+  <div class="web-landing-footer-legal" ng-style="{{$root.admin.web.STYLE.DARK_LINE}}">
+    <span>POWERED BY J&Y</span>
+  </div>
+</div>

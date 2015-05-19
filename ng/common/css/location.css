@@ -1,0 +1,65 @@
+.location .logo {
+	margin-top: 1em;
+	height: 1.5em;
+}
+.location .address {
+	margin: 0;
+	margin-bottom: 1em;
+}
+.checkOpen {
+	margin-top: .5em;
+	font-weight: bold;
+}
+.open {
+	color: #00AE58;
+}
+.close {
+	color: red;
+}
+.center-screen .openhours-table {
+	margin-left:auto; 
+    margin-right:auto;
+}
+.openhours-table thead tr {
+}
+.openhours-table thead tr th{
+	background: #A7C942;
+	border: 1px solid #98BF21;
+	color: white;
+}
+.openhours-table tr td {
+	background: #EAF2D3;
+}
+.openhours-table tr.even td {
+	background: none;
+}
+.openhours-table td, .openhours-table th{
+	border: 1px solid #98BF21;;
+	padding: .2em .5em;
+	color: black;
+	/* border-right: 1px solid #305500; */
+}
+.openhours-table td:last-child {
+	/* border-right: none; */
+}
+.openhours-table td.indicator{
+	/* background: none;
+	border: none;
+	color:  */
+	color: #004B1F;
+	font-size: .7em;
+}
+
+
+/* table td {
+border-left: 1px solid #000;
+border-right: 1px solid #000;
+}
+
+table td:first-child {
+border-left: none;
+}
+
+table td:last-child {
+border-right: none;
+} */

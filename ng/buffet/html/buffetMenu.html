@@ -1,0 +1,51 @@
+<div class="weekly-menu-main-side">
+	<div class="weekly-menu-fix" on-size-changed="logResize"> <!-- ng-style="getTop()" -->
+		<ng:switch on="$root.admin.appService.deviceOS != 'iOS'">
+			<div class="weekly-menu-menubar" du-scroll-container="container" ng:switch-when="true">
+				<a id="nav{{menu.DAY}}" href="#{{menu.DAY}}"
+					ng-repeat='menu in data.MENU' du-smooth-scroll du-scrollspy
+					offset="0" ng-class="{today: $root.admin.web.todayStr == menu.DAY}">{{menu.DAY}}</a>
+			</div>
+	 		
+			<div class="weekly-menu-menubar" ng:switch-default>
+				<a id="nav{{menu.DAY}}" href="#{{menu.DAY}}"
+					ng-repeat='menu in data.MENU' du-smooth-scroll du-scrollspy
+					offset="{{cachedOffSet}}"
+					ng-class="{today: $root.admin.web.todayStr == menu.DAY}">{{menu.DAY}}</a>
+			</div>
+		</ng:switch>
+	</div>
+
+	<div class="main-menu" ng-style="getTop()" ng-class="{ios : appService.deviceOS == 'iOS'}" id="container" du-scroll-container>
+		<div id="{{menu.DAY}}" class="weekly-menu-card-style"
+			ng-repeat='menu in data.MENU'
+			ng-class="{today: $root.admin.web.todayStr == menu.DAY}"
+			repeat-complete="repeatComplete()">
+			<table>
+				<tr>
+					<td class="head">{{menu.DAY}}</td>
+					<td class="body">{{menu.FOOD}}</td>
+				</tr>
+			</table>
+		</div>
+		<div ng-style="getPadding(appService.deviceOS == 'iOS')" ng-click="doSomething()">
+			<div class="daily-menu-fix" ng-class="{relative: vars.isAtBottom}">
+			
+			<div class="title" ng-click="clickOnCommentTitle(data)" ng-show="!vars.isAtBottom">
+				<label>{{data.DAILY_MENU.TITLE}}</label>
+				<label class="right-align" ng-show="!vars.isAtBottom">
+					<span ng-show="!data.DAILY_MENU.collapsed">&#9660;</span>
+					<span ng-show="data.DAILY_MENU.collapsed">&#9650;</span>
+				</label>
+			</div>
+			<div class="title" ng-click="clickOnCommentTitle(data)" ng-show="vars.isAtBottom">
+				<label>{{data.DAILY_MENU.TITLE}}</label>
+			</div>
+			<div ng-show="!data.DAILY_MENU.collapsed">
+				<div class="body">{{data.DAILY_MENU.FOOD}}</div>
+				<div class="comment" ng-bind-html="data.DAILY_MENU.COMMENT"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>

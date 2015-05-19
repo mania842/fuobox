@@ -1,0 +1,136 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+}
+h1 {
+	color: black;
+	margin: .3em;
+	font-size: 1.5em;
+}
+pre {
+	font-family: sans-serif;
+}
+
+body {
+  /* font: 14px/22px "Quattrocento Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  color: #666;
+  font-size: .9em; 
+  margin: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+  /* background: url(images/body-background.png) #eae6d1; */
+}
+body.iPhone.landscape {
+	font-size: .6em;
+}
+select:focus,
+input:focus,
+button:focus,
+textarea:focus {
+    outline: none;
+}
+table {
+	border:none;
+	border-collapse: collapse;
+}
+ 
+fieldset {
+    border-radius: 5px;
+    font-size: 1em;
+    display: inline-block;
+    border: 1px solid #0c2577;
+}
+ 
+fieldset legend {
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5),
+                5px 5px 10px rgba(0,0,0,0.5),
+               -1px -1px 30px rgba(0,0,0,0.2);
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 0 0 0.5em 0.5em;
+    padding: 0 0.4em;
+}
+
+.app-ngview {
+    display: block;
+	/* background-color: #F7F7F7; */
+    position: absolute;
+    top: 5.5em;
+    bottom: 4em;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    background-size: 100%;
+    max-width: 50em;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+.app-ngview.ios {
+	/* background-color: #F7F7F7; */
+    position: relative;
+    padding-top:5.5em;
+    padding-bottom: 4em;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.header-title
+{
+	font-style: bold;
+}
+
+#gmaps {
+    width: 100%;
+    height: 100%;
+}
+.location-map {
+	width: 80%;
+	height: 20em;
+}
+
+/******************************
+ * Common
+ */
+
+.container {
+    width: 100%;
+    padding: 0px;
+    height: 100%;
+ }
+ 
+ .center-screen {
+	text-align: center;
+}
+.center-screen .location-map {
+	margin: 0 auto;
+}
+
+.price-table {
+	text-align: center;
+	margin-left:auto; 
+    margin-right:auto; 
+}
+.price-table td {
+	font-family: serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: .2em;
+}
+.left-align {
+	text-align: left;
+}
+.right-align {
+	text-align: right;
+}
+.phone {
+	cursor: pointer;
+	color: blue;
+	text-decoration: none;
+}

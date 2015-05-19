@@ -1,0 +1,136 @@
+{
+	"DOMAIN" : "gainesvillehomecooking",
+	"TITLE" : "Gainesville Home Cooking",
+	"HOME" : "/buffet/",
+	"MAIN_BG_STYLE" : {
+		"background": "url('json/gainesvillehomecooking/main-bg.png') no-repeat",
+		"background-size": "100%"
+	},
+	"HEADER_BG_STYLE" : {
+		"background": "-moz-linear-gradient(right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url('json/gainesvillehomecooking/title-bg.jpg') no-repeat",
+    	"background": "-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))), url('json/gainesvillehomecooking/title-bg.jpg') no-repeat",
+    	"background": "-webkit-linear-gradient(right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%), url('json/gainesvillehomecooking/title-bg.jpg') no-repeat",
+    	"background": "-o-linear-gradient(right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%), url('json/gainesvillehomecooking/title-bg.jpg') no-repeat",
+    	"background": "-ms-linear-gradient(right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%), url('json/gainesvillehomecooking/title-bg.jpg') no-repeat",
+    	"background": "linear-gradient(to left, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%), url('json/gainesvillehomecooking/title-bg.jpg') no-repeat",
+    	"background-repeat": "no-repeat",
+    	"background-size": "100%",
+    	"background-position": "center"
+	},	
+	"ADDRESS" : {
+		"STREET_1": "250 John W Morrow Jr Pkwy",
+		"STREET_2": "",
+		"CITY": "Gainesville",
+		"STATE": "GA",
+		"ZIPCODE": "30501"
+	},
+	"PHONE" : "770 534 6888",
+	"FOOTER" : [ {
+		"NAME" : "Menu",
+		"PATH" : "/buffet/menu/"
+	}, {
+		"NAME" : "Price",
+		"PATH" : "/buffet/price/"
+	}, {
+		"NAME" : "Location",
+		"PATH" : "/buffet/location/"
+	}, {
+		"NAME" : "About",
+		"PATH" : "/buffet/about/"
+	}],
+	"MENU" : [ {
+		"DAY" : "SUN",
+		"FOOD" : "Fried Chicken, Chicken Dressing with gravy, Meal Loaf, Macaroni & Cheese, Hot wings, Ham, popcorn Shrimp, Mashed Potato with gravy, Rice, Corn bread"
+	}, {
+		"DAY" : "MON",
+		"FOOD" : "Fried Chicken, Meat Loaf, BBQ Rib, French Fries, Chicken Gizzard, Sausage with Sauerkraut, Teriyaki Chicken/brocooli, Breaded Ukra, Macaroni & Cheese, Corn Bread, Gravy Steak, Baked Potato, Mashed Potato, Rice"
+	}, {
+		"DAY" : "TUE",
+		"FOOD" : "Fried Chicken, Roasted Pork, Macaroni & Cheese, Rice, Chicken Liver, Mashed Potato, Pepper steak, Bread Prok chop, Beef Steak, Chicken Pot Pie, Fried Pickle, Corn Bread, Brussels Sprout"
+	}, {
+		"DAY" : "WED",
+		"FOOD" : "Fried Chicken, Meat Loaf, BBQ Rib, French Fries, Chicken Gizzard, Sausage with Sauerkraut, Teriyaki Chicken/brocooli, Breaded Ukra, Macaroni & Cheese, Corn Bread, Gravy Steak, Baked Potato, Mashed Potato, Rice"
+	}, {
+		"DAY" : "THU",
+		"FOOD" : "Fried Chicken, BBQ Rib, Broccoli Casserole, Chicken Liver, Tepper Steak, French Fries, Mac & Cheese, Gravy Steak, Mashed Potato, Baked Potato, Sausage Sauerkraut, Rice, Corn Bread"
+	}, {
+		"DAY" : "FRI",
+		"FOOD" : "Fried Chicken, Fried Cat Fish, Baked Tilapia, French Fries, Chicken Gizzard, Pepper Steak, Teriyaki Chicken/Broccoli, Bread Pork Chop, Hush Puppy, Mashed Potato, Chicken Pot Pie, Corn Bread"
+	}, {
+		"DAY" : "SAT",
+		"FOOD" : "Fried Chicken, Pork Ribs, Macaroni & Cheese, Chicken liver, French Fries, Gravy Steak, Fried Okra, Broccoli Casserole, Mashed Potato, Rice, Corn Bread, Baked Potato, Beef Broccoli, Beef Stew, Chicken Tender"
+	}],
+	"DAILY_MENU" : {
+		"TITLE" : "Every Day on the Buffet....",
+		"FOOD" : "Dinner Roll, Cobbler, Green Bean, Cream Corns, Yellow Squash, Collard Green, Okra & Tomato, Steamed Cabbage, Rutabagas, Lima bean, Sweet Potato, Black Eye Pea, Baked Chicken, Fried Chicken, Fried Green Tomatoes",
+		"COMMENT" : "<font color='blue'>***** Fresh Vegetables & Fruits *****</font>"
+	},
+	"PRICES" : [ {
+		"NAME" : "2 years under",
+		"PRICE" : "<font color='blue'>Free</font>"
+	}, {
+		"NAME" : "3-5 years",
+		"PRICE" : "$3.74 <small>+ tax</small>"
+	}, {
+		"NAME" : "6-10 years",
+		"PRICE" : "$5.61 <small>+ tax</small>"
+	}, {
+		"NAME" : "Adult",
+		"PRICE" : "$8.42 <small>+ tax</small>"
+	}, {
+		"NAME" : "Senior (Mon - Thu)",
+		"PRICE" : "$7.48 <small>+ tax</small>"
+	} ],
+	"PRICES_1" : [ {
+		"NAME" : "Soft Drink",
+		"PRICE" : "$1.41 <small>+ tax</small>"
+	}, {
+		"NAME" : "<font color='red'>Include Tea, Coffee & Water</font>",
+		"STYLE" : "{'font-weight':'normal'}"
+	}, {
+		"NAME" : "Carry Out",
+		"PRICE" : "$4.59 / lb <small>+ tax</small>"
+	}, {
+		"NAME" : "<font color='red'><b><i>No Take Out for Leftover</i></b></font>"
+	}, {
+		"NAME" : "<center>Menu items & prices are subject<br>to change without notice</center>",
+		"STYLE" : "{color:'#004b1f'}"
+	} ],
+	"LOCATION" : {
+		"MAP" : "https://www.google.com/maps/place/Gainesville+Home+Cooking/@34.296189,-83.83918,15z/data=!4m2!3m1!1s0x0:0xd7d439217d2283fb",
+		"LONG" : "34.296189",
+		"LANG" : "-83.83918",
+		"TIMEZONE" : "EST",
+		"OPEN_DAY" : [{
+			"DAY" : "MON",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:30 PM"
+		}, {
+			"DAY" : "TUE",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:30 PM"
+		}, {
+			"DAY" : "WED",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:30 PM"
+		}, {
+			"DAY" : "THU",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:30 PM"
+		}, {
+			"DAY" : "FRI",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:30 PM"
+		}, {
+			"DAY" : "SAT",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:30 PM"
+		}, {
+			"DAY" : "SUN",
+			"OPEN" : "11:00 AM",
+			"CLOSE" : "8:00 PM"
+		}
+		]
+	}
+	
+}
