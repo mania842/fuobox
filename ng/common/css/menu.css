@@ -52,13 +52,18 @@
 	vertical-align: top;
 }
 .item .card-style .imgbg {
-	/* width: 13em; */
 	height: 9em;
 	margin: .5em;
+}
+.item .card-style .oneContainer .imgbg {
+	margin: 0;
 }
 .item .card-style td.icon .imgbg {
 	width: 7em;
 	height: 4em;
+}
+.item .card-style td.title {
+	padding: .5em;
 }
 .item .card-style h1 {
 	font-size: 1.3em;
