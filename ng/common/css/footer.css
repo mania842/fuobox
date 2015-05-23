@@ -24,9 +24,6 @@
 	display: table;
 	width: 100%;
 }
-.web-landing-footer-menubar.fuobox {
-	background-color: #dd2f3c;
-}
 .web-landing-footer-menubar > span {
 	display: table-cell;
 	color: #ffffff;
@@ -47,20 +44,12 @@
 	.web-landing-footer-menubar > span:HOVER {
 		background-color: #00bc4e;
 	}
-	.web-landing-footer-menubar.fuobox > span:HOVER {
-		background-color: #ff606c;
-	}
-	340d10
 }
 .web-landing-footer-menubar > span:ACTIVE
 {
 	background-color: #002e13;
 	color: #fff;
 }
-.web-landing-footer-menubar.fuobox > span:ACTIVE {
-		background-color: #340d10;
-		color: #fff;
-	}
 .web-landing-footer-menubar > span.activeTab {
     background-color: #006229;
     color: #fff;

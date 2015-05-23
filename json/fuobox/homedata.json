@@ -2,16 +2,12 @@
 	"DOMAIN" : "fuobox",
 	"TITLE" : "Fusion Orange",
 	"HOME" : "/",
+	"CSS" : "json/fuobox/the-style.css",
+	"ALLOW_PAYMENT" : false,
 	"STYLE" : {
-		"DARK_LINE": {
-			"background" : "#61181d"
-		},
-		"FOOTER_DOWN": {
-			"background" : "#340d10"
-		},
 		"TITLE": {
 			"height" : "2.8em",
-	  		"margin": ".3em .5em .8em 1em"
+	  		"margin": ".3em .5em 0em 1em"
 		},
 		"HEADER_BG_STYLE" : {
 			"background": "url('json/fuobox/title-bg.png')",
@@ -23,7 +19,7 @@
 	    	"background": "linear-gradient(to left, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%), url('json/fuobox/title-bg.png') no-repeat",
 	    	"background-repeat": "no-repeat",
 	    	"background-size": "100%",
-	    	"background-position": "center"
+	    	"background-position": "bottom"
 		}
 	},
 	"ADDRESS" : {
@@ -37,75 +33,107 @@
 	"PHONE" : "770 557 5040",
 	"FOOTER" : [ {
 		"NAME" : "Menu",
+		"STATE" : "menu",
 		"PATH" : "/menu/"
 	}, {
-		"NAME" : "Price",
-		"PATH" : "/buffet/price/"
-	}, {
 		"NAME" : "Location",
-		"PATH" : "/buffet/location/"
-	}, {
-		"NAME" : "About",
-		"PATH" : "/buffet/about/"
+		"STATE" : "location",
+		"PATH" : "/location/"
 	}],
-	"MENU" : [ {
-		"DAY" : "SUN",
-		"FOOD" : "Fried Chicken, Chicken Dressing with gravy, Meal Loaf, Macaroni & Cheese, Hot wings, Ham, popcorn Shrimp, Mashed Potato with gravy, Rice, Corn bread"
-	}, {
-		"DAY" : "MON",
-		"FOOD" : "Fried Chicken, Meat Loaf, BBQ Rib, French Fries, Chicken Gizzard, Sausage with Sauerkraut, Teriyaki Chicken/brocooli, Breaded Ukra, Macaroni & Cheese, Corn Bread, Gravy Steak, Baked Potato, Mashed Potato, Rice"
-	}, {
-		"DAY" : "TUE",
-		"FOOD" : "Fried Chicken, Roasted Pork, Macaroni & Cheese, Rice, Chicken Liver, Mashed Potato, Pepper steak, Bread Prok chop, Beef Steak, Chicken Pot Pie, Fried Pickle, Corn Bread, Brussels Sprout"
-	}, {
-		"DAY" : "WED",
-		"FOOD" : "Fried Chicken, Meat Loaf, BBQ Rib, French Fries, Chicken Gizzard, Sausage with Sauerkraut, Teriyaki Chicken/brocooli, Breaded Ukra, Macaroni & Cheese, Corn Bread, Gravy Steak, Baked Potato, Mashed Potato, Rice"
-	}, {
-		"DAY" : "THU",
-		"FOOD" : "Fried Chicken, BBQ Rib, Broccoli Casserole, Chicken Liver, Tepper Steak, French Fries, Mac & Cheese, Gravy Steak, Mashed Potato, Baked Potato, Sausage Sauerkraut, Rice, Corn Bread"
-	}, {
-		"DAY" : "FRI",
-		"FOOD" : "Fried Chicken, Fried Cat Fish, Baked Tilapia, French Fries, Chicken Gizzard, Pepper Steak, Teriyaki Chicken/Broccoli, Bread Pork Chop, Hush Puppy, Mashed Potato, Chicken Pot Pie, Corn Bread"
-	}, {
-		"DAY" : "SAT",
-		"FOOD" : "Fried Chicken, Pork Ribs, Macaroni & Cheese, Chicken liver, French Fries, Gravy Steak, Fried Okra, Broccoli Casserole, Mashed Potato, Rice, Corn Bread, Baked Potato, Beef Broccoli, Beef Stew, Chicken Tender"
-	}],
-	"DAILY_MENU" : {
-		"TITLE" : "Every Day on the Buffet....",
-		"FOOD" : "Dinner Roll, Cobbler, Green Bean, Cream Corns, Yellow Squash, Collard Green, Okra & Tomato, Steamed Cabbage, Rutabagas, Lima bean, Sweet Potato, Black Eye Pea, Baked Chicken, Fried Chicken, Fried Green Tomatoes",
-		"COMMENT" : "<font color='blue'>***** Fresh Vegetables & Fruits *****</font>"
+	"ITEM_CATEGORY" : {
+		"CATEGORY" : ["CHICKEN", "CUTLET", "BBQ", "SIDES", "COMBO"],
+		"CHICKEN" : {
+			"TITLE" : "Chicken",
+			"CATEGORY" : ["CHICKEN1", "CHICKEN2", "CHICKEN3"],
+			"IMG" : "CHICKEN.png"
+		},
+		"CUTLET" : {
+			"TITLE" : "Cutlet",
+			"CATEGORY" : ["CUTLET1", "CUTLET2", "CUTLET3", "CUTLET4"],
+			"IMG" : "CUTLET.png"
+		},
+		"BBQ" : {
+			"TITLE" : "BBQ",
+			"CATEGORY" : ["BBQ1", "BBQ2", "BBQ3"],
+			"IMG" : "BBQ.png"
+		},
+		"SIDES" : {
+			"TITLE" : "Sides",
+			"CATEGORY" : ["SIDES1", "SIDES2", "SIDES3"],
+			"IMG" : "SIDES.png"
+		},
+		"COMBO" : {
+			"TITLE" : "Combo",
+			"CATEGORY" : ["COMBO1", "COMBO2", "COMBO3"]
+		}
 	},
-	"PRICES" : [ {
-		"NAME" : "2 years under",
-		"PRICE" : "<font color='blue'>Free</font>"
-	}, {
-		"NAME" : "3-5 years",
-		"PRICE" : "$3.74 <small>+ tax</small>"
-	}, {
-		"NAME" : "6-10 years",
-		"PRICE" : "$5.61 <small>+ tax</small>"
-	}, {
-		"NAME" : "Adult",
-		"PRICE" : "$8.42 <small>+ tax</small>"
-	}, {
-		"NAME" : "Senior (Mon - Thu)",
-		"PRICE" : "$7.48 <small>+ tax</small>"
-	} ],
-	"PRICES_1" : [ {
-		"NAME" : "Soft Drink",
-		"PRICE" : "$1.41 <small>+ tax</small>"
-	}, {
-		"NAME" : "<font color='red'>Include Tea, Coffee & Water</font>",
-		"STYLE" : "{'font-weight':'normal'}"
-	}, {
-		"NAME" : "Carry Out",
-		"PRICE" : "$4.59 / lb <small>+ tax</small>"
-	}, {
-		"NAME" : "<font color='red'><b><i>No Take Out for Leftover</i></b></font>"
-	}, {
-		"NAME" : "<center>Menu items & prices are subject<br>to change without notice</center>",
-		"STYLE" : "{color:'#004b1f'}"
-	} ],
+	"ITEMS" : {
+		"CHICKEN1" : {
+			"TITLE" : "Fried Chicken",
+			"IMG" : "CHICKEN1.jpg",
+			"PRICE" : 9.99
+		},
+		"CHICKEN2" : {
+			"TITLE" : "Chicken Wings",
+			"IMG" : "CHICKEN2.jpg",
+			"PRICE" : 8.99
+		},
+		"CHICKEN3" : {
+			"TITLE" : "Sweet & Sour Chicken",
+			"IMG" : "CHICKEN3.jpg",
+			"PRICE" : 7.99
+		},
+		"CUTLET1" : {
+			"TITLE" : "Pork Cutlet Pizza",
+			"IMG" : "CUTLET1.jpg",
+			"PRICE" : 7.99
+		},
+		"CUTLET2" : {
+			"TITLE" : "Pork Cutlet",
+			"IMG" : "CUTLET2.jpg",
+			"PRICE" : 7.99
+		},
+		"CUTLET3" : {
+			"TITLE" : "Chicken Cutlet",
+			"IMG" : "CUTLET3.jpg",
+			"PRICE" : 6.99
+		},
+		"CUTLET4" : {
+			"TITLE" : "Fish Cutlet",
+			"IMG" : "CUTLET4.jpg",
+			"PRICE" : 6.99
+		},
+		"BBQ1" : {
+			"TITLE" : "Pork Rib",
+			"IMG" : "BBQ1.jpg",
+			"PRICE" : 8.99
+		},
+		"BBQ2" : {
+			"TITLE" : "SamGyupSal",
+			"IMG" : "BBQ2.jpg",
+			"PRICE" : 7.99
+		},
+		"BBQ3" : {
+			"TITLE" : "Stir Fried Beef",
+			"IMG" : "BBQ3.jpg",
+			"PRICE" : 7.99
+		},
+		"SIDES1" : {
+			"TITLE" : "Sea Food Noodle",
+			"IMG" : "SIDES1.jpg",
+			"PRICE" : 7.99
+		},
+		"SIDES2" : {
+			"TITLE" : "House Fried Rice",
+			"IMG" : "SIDES2.jpg",
+			"PRICE" : 5.99
+		},
+		"SIDES3" : {
+			"TITLE" : "Spicy Rice Cake",
+			"IMG" : "SIDES3.jpg",
+			"PRICE" : 7.99
+		}
+	},
 	"LOCATION" : {
 		"MAP" : "https://www.google.com/maps/place/H+Mart/@34.045114,-84.179197,17z/data=!3m1!4b1!4m2!3m1!1s0x0:0x731a9f2c5fea174",
 		"LONG" : "34.045114",

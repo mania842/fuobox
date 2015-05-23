@@ -2,7 +2,7 @@
 	margin-top: 1em;
 	height: 1.5em;
 }
-.location .address {
+.location {
 	margin: 0;
 	margin-bottom: 1em;
 }
@@ -10,10 +10,10 @@
 	margin-top: .5em;
 	font-weight: bold;
 }
-.open {
+.opened {
 	color: #00AE58;
 }
-.close {
+.closed {
 	color: red;
 }
 .center-screen .openhours-table {

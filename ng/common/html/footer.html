@@ -4,13 +4,14 @@
   <nav class="web-landing-footer-menubar" ng-class="{fuobox: $root.admin.web.DOMAIN == 'fuobox'}">
 		<span ng-repeat="item in items"
 			ng-class="{activeTab : isSelected(item)}"
-			ng-click="buttonClicked(item)">
+			ng-click="buttonClicked(item)"
+			ng-style="{'width' : 100 / $root.admin.web.FOOTER.length + '%'}">
 			<label>{{item.NAME}}</label>
 		</span>
 	</nav>
   
   <!-- Legal notice -->
-  <div class="web-landing-footer-legal" ng-style="{{$root.admin.web.STYLE.DARK_LINE}}">
+  <div class="web-landing-footer-legal">
     <span>POWERED BY J&Y</span>
   </div>
 </div>

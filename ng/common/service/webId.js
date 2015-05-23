@@ -122,14 +122,28 @@
     		    		
     		    		service.web.openHoursDP.push({DAY : "Sun", HOURS : sun.OPEN + " - " + sun.CLOSE, INCLUDING_DAYS: [weekdayNumMap[0]]});
     		    	}
-//    		        console.log("service.web.openHoursDP", service.web.openHoursDP);
-//    		        console.log("service.web.openHours", service.web.openHours);
-    				
     				
     		    	var d = new Date();
     		    	service.web.todayStr = weekdayNumMap[d.getDay()];
-    		    	console.log("service.web.todayStr", service.web.openHours[service.web.todayStr].OPEN_HOURS_STR);
     				
+    		    	
+    		    	// items
+    		    	var imgPath = 'json/' + homepage + "/img/";
+    		    	if (service.web.ITEMS) {
+	    		    	angular.forEach(service.web.ITEMS, function(item) {
+	    		    		if (item.IMG)
+	    		    			item.IMG_PATH = imgPath + item.IMG;
+	    		        });
+    		    	}
+    		    	if (service.web.ITEM_CATEGORY) {
+	    		    	angular.forEach(service.web.ITEM_CATEGORY.CATEGORY, function(item) {
+	    		    		if (service.web.ITEM_CATEGORY[item] && service.web.ITEM_CATEGORY[item].IMG) {
+	    		    			service.web.ITEM_CATEGORY[item].IMG_PATH = imgPath + service.web.ITEM_CATEGORY[item].IMG;
+	    		    		}
+	    		        });
+    		    	}
+    		    	
+    		    	
     				
    	    		   	return service.web;
     	    	}).then(function() {

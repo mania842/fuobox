@@ -1,0 +1,126 @@
+.menu, .item, .location {
+	padding: .5em;
+	max-width: 60em;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+/******************************
+ * Detail card with border and shadow 
+ */
+.card-style {
+	border: 1px solid #000;
+	padding: .5em;
+	box-shadow:.2em .2em .2em rgba(0, 0, 0, 0.2);
+	font-size: .9em;
+	/* overflow: auto; */
+	border-radius: 0.5em;
+	margin: 1em;
+}
+.card-style table {
+	width: 100%;
+}
+.card-style td.icon {
+	width: 7em;
+	height: 4em;
+}
+.menu .card-style td.icon > img {
+	height:100%;
+}
+
+.menu .card-style td.title {
+	font-size: 2.5em;
+	font-weight: bold;
+	font-style: italic;
+}
+.menu .card-style td.arrow {
+	width: 1em;
+}
+@media only screen and (min-device-width : 1224px)
+{
+	.menu .card-style:HOVER {
+		background: #ffe9e9;
+	}
+}
+.menu .card-style:ACTIVE {
+	background-color: #61181d;
+	color: #fff;
+}
+
+.item .card-style {
+	display: inline-block;
+	margin: .5em;
+	vertical-align: top;
+}
+.item .card-style .imgbg {
+	/* width: 13em; */
+	height: 9em;
+	margin: .5em;
+}
+.item .card-style td.icon .imgbg {
+	width: 7em;
+	height: 4em;
+}
+.item .card-style h1 {
+	font-size: 1.3em;
+	font-style: italic;
+	margin: 0em;
+	font-weight: bold;
+}
+.item .card-style .priceLabel {
+	color: #000;
+	font-size: 2em;
+	font-style: italic;
+	font-weight: bold;
+	position: relative;
+}
+.item .card-style .price tr {
+	white-space: nowrap;
+}
+.item .card-style .price td {
+	/* display: inline; */
+}
+.item .card-style .pricetd, .item .card-style .cart {
+	width: 0;
+	text-align: right;
+	padding: 0 .5em;
+}
+.item .card-style .cart .web-button {
+	margin-bottom: .5em;
+}
+.item .card-style .price .myQuantity {
+	margin-right: 1.5em;
+}
+
+.web-button {
+	display: inline-block;
+	background-color: #488000;
+	color: #ffffff;
+	border: 1px solid #305500;
+	border-radius: .2em;
+	padding: .3em .7em;
+	cursor: pointer;
+	vertical-align: middle;
+}
+.web-button:disabled
+{
+	background-color: #cccccc;
+	cursor: default;
+}
+@media only screen and (min-device-width : 1224px) {
+	.web-button:enabled:HOVER {
+		background-color: #cde630;
+	}
+}
+.web-button:enabled:ACTIVE {
+	background-color: #305500;
+}
+
+.hiddenPay {
+	cursor: default;
+	opacity: 0;
+    filter: Alpha(opacity=0);
+	/* visibility: hidden; */
+}
+.hiddenPay button {
+	cursor: default;
+}

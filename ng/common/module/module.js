@@ -6,7 +6,7 @@
 	'use strict';
 
 	// Define our module.
-	var module = angular.module('myApp', [ 'ui.router', 'ngSanitize', 'duScroll']);
+	var module = angular.module('myApp', [ 'ui.bootstrap', 'ui.router', 'ngSanitize', 'duScroll']);
 
 	module.value('duScrollDuration', 500);
 	module.value('duScrollBottomSpy', true);
@@ -15,19 +15,22 @@
 	module.config(function($stateProvider, $urlRouterProvider) {
 
 		// For any unmatched url, redirect to /state1
+		$urlRouterProvider.when('/', '/menu');
 		$urlRouterProvider.otherwise("/");
 
 		// Now set up the states
-		$stateProvider.state('home', {
-			url : "/",
+		$stateProvider.state('menu', {
+			url : "/menu",
+			templateUrl : "ng/common/html/menu.html",
+			controller: 'MenuController'
+		}).state('location', {
+			url : "/location",
 			templateUrl : "ng/common/html/location.html",
 			controller: 'LocationController'
-		}).state('link', {
-			url : "/link",
-			templateUrl : "ng/common/html/link.html"
-		}).state('state2', {
-			url : "/state2",
-			templateUrl : "state2.html"
+		}).state('category', {
+			url : "/category/:categoryName",
+			templateUrl : "ng/common/html/item-category.html",
+			controller: 'MenuController'
 		});
 	});
 	
@@ -53,7 +56,7 @@
 		.otherwise({ redirectTo : '/' });
 	});*/
 
-	module.factory('page', function() {
+	/*module.factory('page', function() {
 		var title = 'default';
 
 		return {
@@ -64,7 +67,7 @@
 				title = newTitle;
 			}
 		};
-	});
+	});*/
 	
 	module.run(function($rootScope, $location, webId, appService) {
 		Date.prototype.stdTimezoneOffset = function() {

@@ -1,0 +1,13 @@
+<div class="menu" ng-class="{fuobox: $root.admin.web.DOMAIN == 'fuobox'}">
+	<div class="card-style" ng-repeat='category in itemCategory.CATEGORY' ng-click="clickCategory(category)"> <!-- repeat-complete="repeatComplete()" -->
+		<table>
+			<tr>
+				<td class="icon">
+					<img ng-src="{{getFirstItemImg(category)}}"/>
+				</td>
+				<td class="title">{{getMenus(category).TITLE}}</td>
+				<td class="arrow">&#9658;</td>
+			</tr>
+		</table>
+	</div>
+</div>

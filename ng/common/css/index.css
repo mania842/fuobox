@@ -4,14 +4,25 @@ html,body {
     height: 100%;
     width: 100%;
     font-family: sans-serif;
+    font-size: 100%;
 }
 h1 {
 	color: black;
-	margin: .3em;
+	margin: .5em;
 	font-size: 1.5em;
+	font-weight: bold;
+	line-height: 1.1;
 }
 pre {
-	font-family: sans-serif;
+	font-family: cursive;
+	padding: 1em;
+  	font-size: medium;
+  	line-height: normal;
+  	color: inherit;
+  	background: none;
+  	border: none;
+  	border-radius: 0;
+  	margin: 0;
 }
 
 body {
@@ -28,11 +39,20 @@ body {
 body.iPhone.landscape {
 	font-size: .6em;
 }
+button, select, input {
+	font-size: small;
+	font-style: normal;
+	font-weight: normal;
+}
 select:focus,
 input:focus,
 button:focus,
 textarea:focus {
     outline: none;
+}
+label {
+	font-weight: normal;
+	margin: 0;
 }
 table {
 	border:none;
@@ -67,9 +87,9 @@ fieldset legend {
     right: 0;
     overflow: auto;
     background-size: 100%;
-    max-width: 50em;
+    /* max-width: 50em;
   	margin-left: auto;
-  	margin-right: auto;
+  	margin-right: auto; */
 }
 .app-ngview.ios {
 	/* background-color: #F7F7F7; */

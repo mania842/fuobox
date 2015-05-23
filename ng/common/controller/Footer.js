@@ -6,7 +6,7 @@
     'use strict';
 
     angular.module('myApp').controller('webFooterController',
-    function ($location, $scope, webId) {
+    function ($state, $scope, webId) {
     	$scope.items = webId.getWebFooter();
     	$scope.domain = webId.getWebDomain();
     	$scope.mode = [];
@@ -26,9 +26,8 @@
        	});
     	
         $scope.buttonClicked = function(item) {
-//        	console.log("item.PATH + $scope.domain", item.PATH + $scope.domain);
-        	console.log("button Clicked: ", item.PATH + $scope.domain);
-        	$location.path(item.PATH + $scope.domain);
+        	$state.go(item.STATE);
+        	/*$location.path(item.PATH);*/
         	
 //            if(section == $scope.sections[0].name){
 ////            	if ($scope.mode.length > 0) {
@@ -56,16 +55,6 @@
             return $scope.selected === section;
         };
         
-        $scope.getStyle = function(hover, down, item) {
-        	console.log(hover, down);
-        	if (down) {
-        		return webId.web.STYLE.FOOTER_DOWN;
-        	}
-        	if (hover) {
-        		return webId.web.STYLE.FOOTER_HOVER; 
-        	}
-        	return webId.web.STYLE.FOOTER;
-        };
 //        $scope.isDisabled = function() {
 //        	return !csmdUser.isAuthorized();
 //        };
