@@ -5,7 +5,7 @@
     angular.module('buffetModule').controller('BuffetMenuController', 
     		function ($document, $http, $rootScope, $scope, $location, $routeParams, webId, appService) {
     	$scope.isScrollTop = true;
-    	$scope.data = webId.loadWebData($routeParams.homepage);
+    	$scope.data = webId.loadWebData();
     	$scope.vars = {
     		cachedCollapse: false,
     	};

@@ -43,6 +43,7 @@ button, select, input {
 	font-size: small;
 	font-style: normal;
 	font-weight: normal;
+	vertical-align: inherit;
 }
 select:focus,
 input:focus,

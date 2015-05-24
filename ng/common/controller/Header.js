@@ -10,10 +10,9 @@
     	$scope.hs = webId.getWeb();
     	$scope.webId = webId;
     	
-    	$scope.$on('service.webId:updated', function(event, data, domain) {
+    	$scope.$on('service.webId:updated', function(event, data) {
     		$scope.hs = data;
     		$scope.webId = webId;
-//    		$scope.$apply();
        	});
     	
     	$scope.redirectToHome = function() {

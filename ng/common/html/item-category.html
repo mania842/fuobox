@@ -1,49 +1,81 @@
 <div class="item" on-size-changed="logResize">
-	<div id="{{itemCode}}" class="card-style"
-		ng-repeat='itemCode in categoryObj.CATEGORY'
-		ng-style="getCardWidth(itemCode, $index)">
-		<!-- repeat-complete="repeatComplete()" -->
-		
-		<div ng-show="!canContainOnlyOne">
-			<h1>{{getItemTitle(itemCode)}}</h1>
-			<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
+	<div class="menu-fix"> <!-- ng-style="getTop()" -->
+		<ng:switch on="$root.admin.appService.deviceOS != 'iOS'">
+			<div class="section" ng:switch-when="true" ng-repeat='category in categoryNav'>
+				<a ui-sref="{{category.STATE}}">{{category.TITLE}}</a>
+				<span ng-show="$index < categoryNav.length - 1">></span>
+			</div>
+	 		
+			<div class="section" ng:switch-default ng-repeat='category in categoryNav'>
+				<a ui-sref="{{category.STATE}}">{{category.TITLE}}</a>
+				<span ng-show="$index < categoryNav.length - 1">></span>
+				<!-- <a id="nav{{menu.DAY}}" href="#{{menu.DAY}}"
+					ng-repeat='menu in data.MENU'>{{menu.DAY}}</a> -->
+			</div>
+		</ng:switch>
+	</div>
+	
+	<div class="main-menu-fix" ng-style="getTop()" ng-class="{ios : appService.deviceOS == 'iOS'}" >
+		<div id="{{itemCode}}" class="card-style clickable"
+			ng-repeat='itemCode in categoryObj.CATEGORY'
+			ng-style="getCardWidth(itemCode, $index)"
+			ng-click="clickOnItemCard(itemCode)">
+			<!-- repeat-complete="repeatComplete()" -->
 			
-			<table class="price">
+			<div ng-show="!canContainOnlyOne">
+				<h1>{{getItemTitle(itemCode)}}</h1>
+				
+				<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
+				
+				<table class="price">
+					<tr>
+						<td>
+							<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
+								<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
+								<select class="myQuantity" ng-model="myQuantity"
+									ng-options="quantity for quantity in quantities"
+									ng-click="clickOnSelect(itemCode)"
+									ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
+							</div>
+						</td>
+						<td class="pricetd">
+							<label class="priceLabel">{{getItemPrice(itemCode)}}</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<table class="oneContainer" ng-show="canContainOnlyOne">
 				<tr>
-					<td>
-						<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
-							<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
-							<select class="myQuantity" ng-model="myQuantity" ng-options="quantity for quantity in quantities" ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
-						</div>
+					<td class="icon">
+						<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
+						<!-- <img ng-src="{{getFirstItemImg(category)}}"/> -->
 					</td>
-					<td class="pricetd">
-						<label class="priceLabel">{{getItemPrice(itemCode)}}</label>
+					<td>
+						<table>
+							<tr>
+								<td class="title"><h1>{{getItemTitle(itemCode)}}</h1></td>
+								<td class="pricetd">Show details</td>
+							</tr>
+							<tr>
+								<td class="cart">
+									<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
+										<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
+										<select class="myQuantity" ng-model="myQuantity"
+											ng-options="quantity for quantity in quantities"
+											ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
+									</div>
+								</td>
+								<td class="pricetd">
+									<label class="priceLabel">{{getItemPrice(itemCode)}}</label>
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>
 		</div>
-		
-		<table class="oneContainer" ng-show="canContainOnlyOne">
-			<tr>
-				<td class="icon">
-					<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
-					<!-- <img ng-src="{{getFirstItemImg(category)}}"/> -->
-				</td>
-				<td class="title"><h1>{{getItemTitle(itemCode)}}</h1></td>
-				<td class="cart">
-					<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
-						<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
-					</div>
-					<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
-						<select class="myQuantity" ng-model="myQuantity" ng-options="quantity for quantity in quantities" ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
-					</div>
-				</td>
-				<td class="pricetd">
-					<label class="priceLabel">{{getItemPrice(itemCode)}}</label>
-				</td>
-			</tr>
-		</table>
-		
-		
+		<div ng-style="getPadding($root.admin.appService.deviceOS == 'iOS')">
+		</div>
 	</div>
 </div>

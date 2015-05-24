@@ -6,11 +6,11 @@
     'use strict';
     
     angular.module('myApp').service('webId', 
-	function ($http, $rootScope, appService) {
+	function ($http, $rootScope, $location, appService) {
     	var service = this;
     	var weekdayMap = { "SUN": 0, "MON": 1, "TUE": 2, "WED": 3, "THU": 4, "FRI": 5, "SAT": 6};
         var weekdayNumMap = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-    	
+//        var homepage = undefined;
     	// The cached data model object
     	service.web = { };
 	    
@@ -19,8 +19,16 @@
     	/**
     	 * Get and cache current web
     	 */
-    	service.loadWebData = function(homepage) {
-    		if (service.getDataPromise && service.homepage === homepage) {
+    	service.loadWebData = function() {
+    		var reload = false;
+    		var homepage = undefined;
+    		if ($location.absUrl().indexOf("fuobox") > -1) {
+    			if (service && service.homepage != "fuobox") {
+    				homepage = "fuobox";
+    				reload = true;
+    			}
+    		}
+    		if (service.getDataPromise && !reload) {
     			// Kick off a digest since we're bypassing the $http call
 //    			$digest();
     			return service.web;
@@ -142,10 +150,7 @@
 	    		    		}
 	    		        });
     		    	}
-    		    	
-    		    	
-    				
-   	    		   	return service.web;
+    		    	return service.web;
     	    	}).then(function() {
     	    		$rootScope.title = service.web.TITLE;
     	    		$rootScope.$broadcast('service.webId:updated', service.getWeb());
@@ -167,7 +172,8 @@
     	 * Get web
     	 */
     	service.getWeb = function() {
-    		return service.web;
+    		
+    		return service.loadWebData();
     	};
     	
     	service.getWebFooter = function() {

@@ -3,7 +3,7 @@
 	"TITLE" : "Fusion Orange",
 	"HOME" : "/",
 	"CSS" : "json/fuobox/the-style.css",
-	"ALLOW_PAYMENT" : false,
+	"ALLOW_PAYMENT" : true,
 	"STYLE" : {
 		"TITLE": {
 			"height" : "2.8em",
@@ -45,26 +45,31 @@
 		"CHICKEN" : {
 			"TITLE" : "Chicken",
 			"CATEGORY" : ["CHICKEN1", "CHICKEN2", "CHICKEN3"],
-			"IMG" : "CHICKEN.png"
+			"IMG" : "CHICKEN.png",
+			"PARENT_STATE" : "menu"
 		},
 		"CUTLET" : {
 			"TITLE" : "Cutlet",
 			"CATEGORY" : ["CUTLET1", "CUTLET2", "CUTLET3", "CUTLET4"],
-			"IMG" : "CUTLET.png"
+			"IMG" : "CUTLET.png",
+			"PARENT_STATE" : "menu"
 		},
 		"BBQ" : {
 			"TITLE" : "BBQ",
 			"CATEGORY" : ["BBQ1", "BBQ2", "BBQ3"],
-			"IMG" : "BBQ.png"
+			"IMG" : "BBQ.png",
+			"PARENT_STATE" : "menu"
 		},
 		"SIDES" : {
 			"TITLE" : "Sides",
 			"CATEGORY" : ["SIDES1", "SIDES2", "SIDES3"],
-			"IMG" : "SIDES.png"
+			"IMG" : "SIDES.png",
+			"PARENT_STATE" : "menu"
 		},
 		"COMBO" : {
 			"TITLE" : "Combo",
-			"CATEGORY" : ["COMBO1", "COMBO2", "COMBO3"]
+			"CATEGORY" : ["COMBO_A", "COMBO_B", "COMBO_C"],
+			"PARENT_STATE" : "menu"
 		}
 	},
 	"ITEMS" : {
@@ -132,6 +137,21 @@
 			"TITLE" : "Spicy Rice Cake",
 			"IMG" : "SIDES3.jpg",
 			"PRICE" : 7.99
+		},
+		"COMBO_A" : {
+			"TITLE" : "Combo A",
+			"IMG" : "",
+			"PRICE" : 29.99
+		},
+		"COMBO_B" : {
+			"TITLE" : "Combo B",
+			"IMG" : "",
+			"PRICE" : 39.99
+		},
+		"COMBO_C" : {
+			"TITLE" : "Combo 3",
+			"IMG" : "",
+			"PRICE" : 49.99
 		}
 	},
 	"LOCATION" : {

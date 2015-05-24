@@ -6,6 +6,12 @@
     		function ($scope, $location, $filter, webId, appService) {
     		
     	$scope.data = webId.getWeb();
+    	
+    	$scope.$on('service.webId:updated', function(event, data) {
+    		$scope.data = data;
+    		init();
+       	});
+    	
     	$scope.logResize = function () {
     		$scope.$apply();
         };
@@ -14,8 +20,12 @@
         	todayStr : $scope.data.todayStr
         };
         
-        $scope.openHours = $scope.data.openHours;
-        $scope.openHoursDP = $scope.data.openHoursDP;
+        var init = function() {
+        	$scope.openHours = $scope.data.openHours;
+            $scope.openHoursDP = $scope.data.openHoursDP;
+        };
+        init();
+        
         
     	$scope.setMapHeight = function() {
     		var winHeight = window.innerHeight;

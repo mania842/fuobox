@@ -1,9 +1,68 @@
 .menu, .item, .location {
-	padding: .5em;
+	/* padding: .5em; */
 	max-width: 60em;
   	margin-left: auto;
   	margin-right: auto;
 }
+
+/******************************
+ * View settings 
+ */
+.menu-fix {
+	background-color: #008537;
+	color: #000000;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+	/* position: fixed; */
+	z-index: 1000;
+	left: auto;
+	right: auto;
+	
+/* 	background: rgba(0, 133, 55, 0.88); */
+	box-shadow: 0px 0px 2px #999;
+}
+.menu-fix .section {
+	display: table-cell;
+	vertical-align: middle;
+}
+.menu-fix .section > a,  .menu-fix .section > span{
+	text-decoration: none;
+	display:inline-block;
+	color: #ffffff;
+	vertical-align: middle;
+	text-align: center;
+	/* border-right: 1px solid rgba(255, 255, 255, .5); */
+	
+	/* margin: .5em 0; */
+	text-transform: lowercase;
+	cursor: default;
+}
+.menu-fix .section > a {
+	cursor: pointer;
+	padding: 0 .5em;
+}
+
+.menu-fix .section > a:FIRST-LETTER {
+	text-transform: uppercase;
+}
+
+.menu-fix .section > a:last-child {
+    border-right: none;
+}
+.main-menu-fix {
+	left: auto;
+	right: auto;
+	bottom: 0px;
+	overflow-y: auto;
+	position: absolute;
+}
+.main-menu-fix.ios {
+	position: inherit;
+}
+
+
+
 /******************************
  * Detail card with border and shadow 
  */
@@ -35,35 +94,36 @@
 .menu .card-style td.arrow {
 	width: 1em;
 }
+.card-style.clickable {
+	cursor: pointer;
+}
 @media only screen and (min-device-width : 1224px)
 {
-	.menu .card-style:HOVER {
+	.card-style.clickable:HOVER {
 		background: #ffe9e9;
 	}
 }
-.menu .card-style:ACTIVE {
-	background-color: #61181d;
-	color: #fff;
+.card-style.clickable:ACTIVE {
+	background-color: #ffe9e9;
 }
 
 .item .card-style {
 	display: inline-block;
 	margin: .5em;
+	margin-bottom: 0;
 	vertical-align: top;
 }
 .item .card-style .imgbg {
 	height: 9em;
 	margin: .5em;
 }
-.item .card-style .oneContainer .imgbg {
-	margin: 0;
-}
 .item .card-style td.icon .imgbg {
-	width: 7em;
+	width: 6em;
 	height: 4em;
 }
 .item .card-style td.title {
 	padding: .5em;
+	padding-top: 0;
 }
 .item .card-style h1 {
 	font-size: 1.3em;
@@ -71,12 +131,14 @@
 	margin: 0em;
 	font-weight: bold;
 }
+
 .item .card-style .priceLabel {
 	color: #000;
 	font-size: 2em;
 	font-style: italic;
 	font-weight: bold;
 	position: relative;
+	line-height: 1em;
 }
 .item .card-style .price tr {
 	white-space: nowrap;
@@ -94,6 +156,25 @@
 }
 .item .card-style .price .myQuantity {
 	margin-right: 1.5em;
+}
+.item .card-style .oneContainer {
+	font-size: .8em;
+}
+.item .card-style .oneContainer .imgbg {
+	margin: 0;
+}
+.item .card-style .oneContainer .cart {
+	text-align: inherit;
+}
+.item .card-style .oneContainer .cart > div {
+	vertical-align: middle;
+}
+.item .card-style .oneContainer .cart .web-button {
+	margin: 0;
+}
+.item .card-style .oneContainer .cart .web-button {
+	font-size: 1.1em;
+	padding: .2em .5em;
 }
 
 .web-button {
