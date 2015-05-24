@@ -1,4 +1,4 @@
-<div class="item" ng-class="{fuobox: $root.admin.web.DOMAIN == 'fuobox'}" on-size-changed="logResize">
+<div class="item" on-size-changed="logResize">
 	<div id="{{itemCode}}" class="card-style"
 		ng-repeat='itemCode in categoryObj.CATEGORY'
 		ng-style="getCardWidth(itemCode, $index)">

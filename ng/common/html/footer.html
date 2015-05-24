@@ -1,7 +1,7 @@
 <div id="web-landing-footer" class="web-landing-footer" ng:controller="webFooterController" ng-class="{ios : appService.deviceOS == 'iOS'}">
 
   <!-- Icon based menubar at the footer -->
-  <nav class="web-landing-footer-menubar" ng-class="{fuobox: $root.admin.web.DOMAIN == 'fuobox'}">
+  <nav class="web-landing-footer-menubar">
 		<span ng-repeat="item in items"
 			ng-class="{activeTab : isSelected(item)}"
 			ng-click="buttonClicked(item)"
