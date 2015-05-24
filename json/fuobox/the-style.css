@@ -1,0 +1,81 @@
+/*
+* Header
+*/
+.web-landing-header-menubar-line {
+	background : #61181d;
+}
+.web-landing-header-header-title > img {
+	height : 2.8em;
+	margin: .3em .5em 0em 1em;
+}
+
+/*
+* Footer
+*/
+.web-landing-footer-menubar {
+	background-color: #dd2f3c;
+}
+/*	Hovering only on Desktops and laptops */
+@media only screen and (min-device-width : 1224px)
+{
+	.web-landing-footer-menubar > span:HOVER {
+		background-color: #ff606c;
+	}
+}
+.web-landing-footer-menubar > span:ACTIVE {
+	background-color: #340d10;
+	color: #fff;
+}
+.web-landing-footer-legal {
+	background : #61181d;
+}
+/*
+* Location
+*/
+.location .logo {
+	height : 2.8em;
+	margin: .3em .5em 0em 1em;
+}
+/*
+* Menu
+*/
+.card-style {
+	border: 1px solid #dd2f3c;
+	width: inherit;
+}
+.item .card-style h1 {
+	color: #4d2515; 
+}
+.menu .card-style table {
+	color: #dd2f3c;
+}
+/* .item.fuobox .card-style {
+	border: 1px solid #dd2f3c;
+} */
+
+@media only screen and (min-device-width : 1224px) {
+	.menu .card-style:HOVER {
+		background: #ffe9e9;
+	}
+}
+
+.web-button {
+	background-color: #dd2f3c;
+	color: #ffffff;
+	border: none;
+	white-space: nowrap;
+}
+.web-button:disabled
+{
+	background-color: #cccccc;
+	cursor: default;
+}
+@media only screen and (min-device-width : 1224px) {
+	.web-button:enabled:HOVER {
+		background-color: #FF606C;
+	}
+}
+.web-button:enabled:ACTIVE
+{
+	background-color: #61181d;
+}
