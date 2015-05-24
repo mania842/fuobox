@@ -3,7 +3,7 @@
 	"TITLE" : "Fusion Orange",
 	"HOME" : "/",
 	"CSS" : "json/fuobox/the-style.css",
-	"ALLOW_PAYMENT" : true,
+	"ALLOW_PAYMENT" : false,
 	"STYLE" : {
 		"TITLE": {
 			"height" : "2.8em",
