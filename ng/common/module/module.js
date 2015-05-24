@@ -70,6 +70,7 @@
 	});*/
 	
 	module.run(function($rootScope, $location, webId, appService) {
+		document.addEventListener("touchstart", function() {},false);
 		Date.prototype.stdTimezoneOffset = function() {
             var jan = new Date(this.getFullYear(), 0, 1);
             var jul = new Date(this.getFullYear(), 6, 1);

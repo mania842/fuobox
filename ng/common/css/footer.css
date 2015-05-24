@@ -45,7 +45,7 @@
 		background-color: #00bc4e;
 	}
 }
-.web-landing-footer-menubar > span:ACTIVE, .web-landing-footer-menubar > span:FOCUS
+.web-landing-footer-menubar > span:ACTIVE
 {
 	background-color: #002e13;
 	color: #fff;
