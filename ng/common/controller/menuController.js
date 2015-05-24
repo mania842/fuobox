@@ -66,22 +66,23 @@
     	
     	$scope.quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     	$scope.myQuantity = $scope.quantities[0];
-    	var checkSize = function() {
+    	var checkSize = function(itemCode) {
     		var view = document.getElementsByClassName('app-ngview')[0];
     		var viewWidth = view.clientWidth <= appService.em(60) ? view.clientWidth : appService.em(60);
     		var availableWidth = viewWidth - appService.em(1);
     		
     		var eachWidth = (availableWidth / 2) - appService.em(1);
     		
-    		var buttonView = document.getElementsByClassName('addToOrder')[0];
-    		var priceLabelView = document.getElementsByClassName('priceLabel')[0];
-    		var selectView = document.getElementsByClassName('myQuantity')[0];
+    		var itemCodeView = document.getElementById(itemCode);
+    		var buttonView = itemCodeView.getElementsByClassName('addToOrder')[0];
+    		var priceLabelView = itemCodeView.getElementsByClassName('priceLabel')[0];
+    		var selectView = itemCodeView.getElementsByClassName('myQuantity')[0];
     		
     		var isForOne = false;
     		if (buttonView.clientWidth == 0 || priceLabelView.clientWidth == 0 || selectView.clientWidth == 0) {
-    			buttonView = document.getElementsByClassName('addToOrder')[1];
-        		priceLabelView = document.getElementsByClassName('priceLabel')[1];
-        		selectView = document.getElementsByClassName('myQuantity')[1];
+    			buttonView = itemCodeView.getElementsByClassName('addToOrder')[1];
+        		priceLabelView = itemCodeView.getElementsByClassName('priceLabel')[1];
+        		selectView = itemCodeView.getElementsByClassName('myQuantity')[1];
         		isForOne = true;
     		}
     		
@@ -110,7 +111,7 @@
     		
     		var minWidth = viewOffsetMinWidth;
     		
-    		$scope.canContainOnlyOne = checkSize();
+    		$scope.canContainOnlyOne = checkSize(itemCode);
     		
     		if ($scope.canContainOnlyOne) {
     			var style = {"width" : availableWidth};
@@ -120,11 +121,12 @@
     			eachWidth = (availableWidth / 2) - appService.em(1);
     		
     		
-    		if (eachWidth < minWidth) {
-    			$scope.canContainOnlyOne = true;
+    		if (eachWidth <= minWidth) {
+//    			$scope.canContainOnlyOne = true;
     			eachWidth = availableWidth;
+    			return;
     		} else {
-    			$scope.canContainOnlyOne = false;
+//    			$scope.canContainOnlyOne = false;
     			eachWidth = Math.max(eachWidth, minWidth);
     		}
     		return {
@@ -136,34 +138,35 @@
     		return {
     			"background": "url('" + $scope.data.ITEMS[itemCode].IMG_PATH + "')",
     			"background-repeat": "no-repeat",
-    	    	"background-size": "100%",
+    	    	"background-size": "cover",
     	    	"background-position": "center"
+    		};
+    	};
+    	$scope.getCartTdWidth = function(itemCode) {
+    		if (!$scope.canContainOnlyOne)
+    			return;
+    		var itemCodeView = document.getElementById(itemCode);
+    		var cartTdView = itemCodeView.getElementsByClassName('cart')[0];
+    		var width = cartTdView.offsetWidth - appService.em(1);
+    		return {
+    			"width" : width
     		};
     	};
     	$scope.getItemPrice = function(itemCode) {
     		return "$" + $scope.data.ITEMS[itemCode].PRICE;
     	};
+    	$scope.getItemDetails = function(itemCode) {
+    		return $scope.data.ITEMS[itemCode].DETAIL;
+    	};
     	
-    	var buttonClicked = false;
     	$scope.clickOnAddToCart = function(itemCode) {
     		if (!$scope.data.ALLOW_PAYMENT)
     			return;
     		
-    		buttonClicked = true;
     		console.log("itemCode", itemCode);
     	};
-    	$scope.clickOnItemCard = function(itemCode) {
-    		if (buttonClicked) {
-    			buttonClicked = false;
-    			return;
-    		}
+    	$scope.clickOnItemDetails = function(itemCode) {
     		console.log("clickOn item card", itemCode);
-    	};
-    	$scope.clickOnSelect = function(itemCode) {
-    		if (!$scope.data.ALLOW_PAYMENT)
-    			return;
-    		buttonClicked = true;
-    		console.log("clickOn clickOnSelect", itemCode);
     	};
     	
 	});

@@ -118,8 +118,7 @@
 	margin: .5em;
 }
 .item .card-style td.icon .imgbg {
-	width: 6em;
-	height: 4em;
+	height: 100%;
 }
 .item .card-style td.title {
 	padding: .5em;
@@ -147,9 +146,11 @@
 	/* display: inline; */
 }
 .item .card-style .pricetd, .item .card-style .cart {
-	width: 0;
 	text-align: right;
 	padding: 0 .5em;
+}
+.item .card-style .pricetd {
+	width: 0;
 }
 .item .card-style .cart .web-button {
 	margin-bottom: .5em;
@@ -157,14 +158,33 @@
 .item .card-style .price .myQuantity {
 	margin-right: 1.5em;
 }
+.item .card-style .short-details {
+    display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.item .card-style span.short-details {
+	margin-top: .5em;
+	margin-left: .5em;
+	margin-right: .5em;
+}
 .item .card-style .oneContainer {
 	font-size: .8em;
+}
+.item .card-style .oneContainer  td.item {
+	padding-left: .5em;
 }
 .item .card-style .oneContainer .imgbg {
 	margin: 0;
 }
 .item .card-style .oneContainer .cart {
 	text-align: inherit;
+}
+.item .card-style .oneContainer .cart .short-details {
+	font-size: larger;
+	width: 10em;
+	margin-bottom: .5em;
 }
 .item .card-style .oneContainer .cart > div {
 	vertical-align: middle;

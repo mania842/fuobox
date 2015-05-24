@@ -76,17 +76,20 @@
 		"CHICKEN1" : {
 			"TITLE" : "Fried Chicken",
 			"IMG" : "CHICKEN1.jpg",
-			"PRICE" : 9.99
+			"PRICE" : 9.99,
+			"DETAIL" : "4 pieces leg, 4 pieces breasts fried chicken w/ french fries"
 		},
 		"CHICKEN2" : {
 			"TITLE" : "Chicken Wings",
 			"IMG" : "CHICKEN2.jpg",
-			"PRICE" : 8.99
+			"PRICE" : 8.99,
+			"DETAIL" : "w/ french fries"
 		},
 		"CHICKEN3" : {
 			"TITLE" : "Sweet & Sour Chicken",
 			"IMG" : "CHICKEN3.jpg",
-			"PRICE" : 7.99
+			"PRICE" : 7.99,
+			"DETAIL" : "sweet & spicy homemade chicken"
 		},
 		"CUTLET1" : {
 			"TITLE" : "Pork Cutlet Pizza",
@@ -96,17 +99,20 @@
 		"CUTLET2" : {
 			"TITLE" : "Pork Cutlet",
 			"IMG" : "CUTLET2.jpg",
-			"PRICE" : 7.99
+			"PRICE" : 7.99,
+			"DETAIL" : "comes  w/ steamed rice"
 		},
 		"CUTLET3" : {
 			"TITLE" : "Chicken Cutlet",
 			"IMG" : "CUTLET3.jpg",
-			"PRICE" : 6.99
+			"PRICE" : 6.99,
+			"DETAIL" : "comes  w/ steamed rice"
 		},
 		"CUTLET4" : {
 			"TITLE" : "Fish Cutlet",
 			"IMG" : "CUTLET4.jpg",
-			"PRICE" : 6.99
+			"PRICE" : 6.99,
+			"DETAIL" : "comes  w/ steamed rice"
 		},
 		"BBQ1" : {
 			"TITLE" : "Pork Rib",
@@ -126,17 +132,20 @@
 		"SIDES1" : {
 			"TITLE" : "Sea Food Noodle",
 			"IMG" : "SIDES1.jpg",
-			"PRICE" : 7.99
+			"PRICE" : 7.99,
+			"DETAIL" : "Korean style spicy(& sweet)"
 		},
 		"SIDES2" : {
 			"TITLE" : "House Fried Rice",
 			"IMG" : "SIDES2.jpg",
-			"PRICE" : 5.99
+			"PRICE" : 5.99,
+			"DETAIL" : "vegetable, shrimp, meat (chicken, beef)"
 		},
 		"SIDES3" : {
 			"TITLE" : "Spicy Rice Cake",
 			"IMG" : "SIDES3.jpg",
-			"PRICE" : 7.99
+			"PRICE" : 7.99,
+			"DETAIL" : "w/ fish cake"
 		},
 		"COMBO_A" : {
 			"TITLE" : "Combo A",

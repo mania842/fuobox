@@ -16,14 +16,14 @@
 	</div>
 	
 	<div class="main-menu-fix" ng-style="getTop()" ng-class="{ios : appService.deviceOS == 'iOS'}" >
-		<div id="{{itemCode}}" class="card-style clickable"
+		<div id="{{itemCode}}" class="card-style"
 			ng-repeat='itemCode in categoryObj.CATEGORY'
-			ng-style="getCardWidth(itemCode, $index)"
-			ng-click="clickOnItemCard(itemCode)">
+			ng-style="getCardWidth(itemCode, $index)">
 			<!-- repeat-complete="repeatComplete()" -->
 			
 			<div ng-show="!canContainOnlyOne">
 				<h1>{{getItemTitle(itemCode)}}</h1>
+				<span class="short-details">{{getItemDetails(itemCode)}}</span>
 				
 				<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
 				
@@ -34,7 +34,6 @@
 								<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
 								<select class="myQuantity" ng-model="myQuantity"
 									ng-options="quantity for quantity in quantities"
-									ng-click="clickOnSelect(itemCode)"
 									ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
 							</div>
 						</td>
@@ -51,15 +50,18 @@
 						<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
 						<!-- <img ng-src="{{getFirstItemImg(category)}}"/> -->
 					</td>
-					<td>
+					<td class="item">
 						<table>
 							<tr>
-								<td class="title"><h1>{{getItemTitle(itemCode)}}</h1></td>
-								<td class="pricetd">Show details</td>
+								<td class="title" colspan="2"><h1>{{getItemTitle(itemCode)}}</h1></td>
+								<!-- <td class="pricetd" ng-click="clickOnItemDetails(itemCode)" ng-show="$root.admin.web.ALLOW_PAYMENT">Show details</td> -->
 							</tr>
 							<tr>
 								<td class="cart">
-									<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
+									<div class="short-details" ng-style="getCartTdWidth(itemCode)">
+										{{getItemDetails(itemCode)}}
+									</div>
+									<div ng-show="$root.admin.web.ALLOW_PAYMENT">
 										<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
 										<select class="myQuantity" ng-model="myQuantity"
 											ng-options="quantity for quantity in quantities"
