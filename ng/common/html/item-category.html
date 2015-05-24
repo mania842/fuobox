@@ -3,7 +3,7 @@
 		<ng:switch on="$root.admin.appService.deviceOS != 'iOS'">
 			<div class="section" ng:switch-when="true" ng-repeat='category in categoryNav'>
 				<a ui-sref="{{category.STATE}}">{{category.TITLE}}</a>
-				<span ng-show="$index < categoryNav.length - 1">></span>
+				<span ng-show="$index < categoryNav.length - 1"><small><small>&#9658;</small></small></span>
 			</div>
 	 		
 			<div class="section" ng:switch-default ng-repeat='category in categoryNav'>
