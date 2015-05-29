@@ -85,3 +85,13 @@
 {
 	background-color: #61181d;
 }
+
+.modal-header > h1 {
+	color: #4D2515;
+}
+.carousel-indicators .active {
+	  background-color: #dd2f3c;
+}
+.carousel-indicators li {
+	border: 1px solid #dd2f3c;
+}

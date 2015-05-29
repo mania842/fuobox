@@ -6,7 +6,9 @@
 			ng-class="{activeTab : isSelected(item)}"
 			ng-click="buttonClicked(item)"
 			ng-style="{'width' : 100 / $root.admin.web.FOOTER.length + '%'}">
-			<label>{{item.NAME}}</label>
+			<label>{{item.NAME}}
+				<span ng-show="$root.admin.web.ALLOW_PAYMENT && item.STATE === 'cart'">({{$root.admin.web.getTotalQuantity()}})</span>
+				</label>
 		</span>
 	</nav>
   

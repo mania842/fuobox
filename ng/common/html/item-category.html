@@ -8,30 +8,31 @@
 	 		
 			<div class="section" ng:switch-default ng-repeat='category in categoryNav'>
 				<a ui-sref="{{category.STATE}}">{{category.TITLE}}</a>
-				<span ng-show="$index < categoryNav.length - 1">></span>
+				<span ng-show="$index < categoryNav.length - 1"><small><small>&#9658;</small></small></span>
 				<!-- <a id="nav{{menu.DAY}}" href="#{{menu.DAY}}"
 					ng-repeat='menu in data.MENU'>{{menu.DAY}}</a> -->
 			</div>
 		</ng:switch>
 	</div>
 	
-	<div class="main-menu-fix" ng-style="getTop()" ng-class="{ios : appService.deviceOS == 'iOS'}" >
+	<div class="main-menu-fix" ng-style="getTop()" ng-class="{ios : $root.admin.appService.deviceOS == 'iOS'}" >
 		<div id="{{itemCode}}" class="card-style"
 			ng-repeat='itemCode in categoryObj.CATEGORY'
 			ng-style="getCardWidth(itemCode, $index)">
 			<!-- repeat-complete="repeatComplete()" -->
 			
 			<div ng-show="!canContainOnlyOne">
-				<h1>{{getItemTitle(itemCode)}}</h1>
-				<span class="short-details">{{getItemDetails(itemCode)}}</span>
-				
-				<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
-				
+				<h1 ng-click="openItemDetails(itemCode, $index)">{{getItemTitle(itemCode)}}</h1>
+				<span class="short-details" ng-click="openItemDetails(itemCode, $index)">{{getItemDetails(itemCode)}}</span>
+
+				<div class="imgbg" ng-style="getItemImgStyle(itemCode, 'M')"
+					ng-click="openItemDetails(itemCode, $index)"></div>
+
 				<table class="price">
 					<tr>
 						<td>
 							<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
-								<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
+								<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode, myQuantity)">Add to Cart</button>
 								<select class="myQuantity" ng-model="myQuantity"
 									ng-options="quantity for quantity in quantities"
 									ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
@@ -46,29 +47,28 @@
 			
 			<table class="oneContainer" ng-show="canContainOnlyOne">
 				<tr>
-					<td class="icon">
+					<td class="icon" ng-click="openItemDetails(itemCode, $index)" ng-style="getItemImgIconStyle(itemCode)">
 						<div class="imgbg" ng-style="getItemImgStyle(itemCode)"></div>
 						<!-- <img ng-src="{{getFirstItemImg(category)}}"/> -->
 					</td>
 					<td class="item">
 						<table>
-							<tr>
+							<tr ng-click="openItemDetails(itemCode, $index)">
 								<td class="title" colspan="2"><h1>{{getItemTitle(itemCode)}}</h1></td>
-								<!-- <td class="pricetd" ng-click="clickOnItemDetails(itemCode)" ng-show="$root.admin.web.ALLOW_PAYMENT">Show details</td> -->
 							</tr>
 							<tr>
 								<td class="cart">
-									<div class="short-details" ng-style="getCartTdWidth(itemCode)">
+									<div class="short-details" ng-style="getCartTdWidth(itemCode)" ng-click="openItemDetails(itemCode, $index)">
 										{{getItemDetails(itemCode)}}
 									</div>
 									<div ng-show="$root.admin.web.ALLOW_PAYMENT">
-										<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode)">Add to Cart</button>
+										<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode, myQuantity)">Add to Cart</button>
 										<select class="myQuantity" ng-model="myQuantity"
 											ng-options="quantity for quantity in quantities"
 											ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>
 									</div>
 								</td>
-								<td class="pricetd">
+								<td class="pricetd" ng-click="openItemDetails(itemCode, $index)">
 									<label class="priceLabel">{{getItemPrice(itemCode)}}</label>
 								</td>
 							</tr>

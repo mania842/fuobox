@@ -1,0 +1,172 @@
+<div class="cart">
+	<div>
+		<!-- items -->
+		<table class="table table-bordered">
+			<!-- header -->
+			<tr class="well">
+				<td><b>Item</b></td>
+				<td class="tdCenter"><b>Quantity</b></td>
+				<td class="tdRight"><b>Price</b></td>
+				<td />
+			</tr>
+
+			<!-- empty cart message -->
+			<tr ng-hide="$root.admin.web.getTotalQuantity() > 0">
+				<td class="tdCenter" colspan="4">Your cart is empty.</td>
+			</tr>
+
+			<!-- cart items -->
+			<tr ng-repeat="item in cart | orderBy:'name'">
+				<td>{{item.name}}</td>
+				<td class="tdCenter">
+					<div class="input-append">
+						<!-- use type=tel instead of  to prevent spinners -->
+						<input class="span3 text-center" type="tel"
+							ng-model="item.quantity" ng-change="cart.saveItems()" />
+						<button class="btn btn-success" type="button"
+							ng-disabled="item.quantity >= 1000"
+							ng-click="addItem(item, +1)">+</button>
+						<button class="btn btn-inverse" type="button"
+							ng-disabled="item.quantity <= 1"
+							ng-click="addItem(item, -1)">-</button>
+					</div>
+				</td>
+				<td class="tdRight">{{item.price * item.quantity | currency}}</td>
+				<td class="tdCenter" title="remove from cart">
+					<a class="closeButton" ng-click="removeAllItems(item)">&#10006;</a>
+				</a></td>
+			</tr>
+			
+			<tr>
+				<td><b>Tax</b></td>
+				<td class="tdCenter"></td>
+				<td class="tdRight">{{$root.admin.web.getTotalTax() | currency}}</td>
+				<td />
+			</tr>
+			<!-- <tr>
+				<td><b>Delivery</b></td>
+				<td></td>
+				<td class="tdRight">{{data.PAYMENT_INFO.DELIVERY_CHARGE | currency}}</td>
+				<td />
+			</tr> -->
+			<!-- footer -->
+			<tr class="well">
+				<td><b>Total</b></td>
+				<td class="tdCenter"><b>{{$root.admin.web.getTotalQuantity()}}</b></td>
+				<td class="tdRight"><b>{{$root.admin.web.getTotalPrice() | currency}}</b></td>
+				<td />
+			</tr>
+		</table>
+	</div>
+	
+	<div class="checkout">
+		<div class="btn-group">
+	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'carryOut'" uncheckable>Carry Out</label>
+	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'delivery'" uncheckable>Delivery</label>
+	    </div>
+    	<!-- {{radioModel}} -->
+		<!-- <button class="web-button checkout">Delivery</button> -->
+		<!-- <button class="web-button checkout">Delivery</button> -->	
+	</div>
+	
+	<div class="phone-form">
+	Phone: (<input type="text" name="phone-1" maxlength="3">) <input
+		type="text" name="phone-2" maxlength="3">- <input type="text"
+		name="phone-3" maxlength="4">
+	</div>
+
+
+	<!-- <button ng-click="sendEmail()">send email</button> -->
+
+	In testing
+	<!-- <form style="opacity: 1;" target="_top" class="paypal-button"
+		action="https://www.paypal.com/cgi-bin/webscr" method="post"> -->
+	<form style="opacity: 1;" target="_top" class="paypal-button"
+		action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+		
+		<div id="errorBox" class="hide"></div>
+		<input value="buynow" name="button" type="hidden">
+		<input value="_cart" name="cmd" type="hidden">
+		<input value="dev.yong842@gmail.com" name="business" type="hidden">
+		<input value="1" name="upload" type="hidden">
+		<input value="2" name="rm" type="hidden">
+		
+		<input value="Chicken" name="item_name_1" type="hidden">
+		<input value="1" name="quantity_1" type="hidden">
+		<input value="10.99" name="amount_1" type="hidden">
+		<input value="USD" name="currency_code_1" type="hidden">
+		<input value="3.50" name="tax_1" type="hidden">
+		
+		<input value="Fried" name="item_name_2" type="hidden">
+		<input value="1" name="quantity_2" type="hidden">
+		<input value="8.99" name="amount_2" type="hidden">
+		<input value="USD" name="currency_code_2" type="hidden">
+		<input value="1.50" name="tax_2" type="hidden">
+		
+		<input value="Rice" name="item_name_3" type="hidden">
+		<input value="1" name="quantity_3" type="hidden">
+		<input value="5.99" name="amount_3" type="hidden">
+		<input value="USD" name="currency_code_3" type="hidden">
+		<input value="1.11" name="tax_3" type="hidden">
+		
+		
+		
+		<input type="hidden" name="first_name" value="YongMoon">
+		<input type="hidden" name="last_name" value="Lee">
+				
+		<input type="hidden" name="address_override" value="1">
+		<input type="hidden" name="address1" value="3622 Meadowglenn Village Ln">
+		<input type="hidden" name="address2" value="Apt A">
+		<input type="hidden" name="city" value="Atlanta">
+		<input type="hidden" name="state" value="GA">
+		<input type="hidden" name="zip" value="30340">
+		<input type="hidden" name="county" value="US">
+		<input type="hidden" name="email" value="mania842@gmail.com">
+		<input type="hidden" name="night_phone_a" value="917">
+		<input type="hidden" name="night_phone_b" value="504">
+		<input type="hidden" name="night_phone_c" value="9043">
+		<!-- <input TYPE="hidden" NAME="return" value="#"> -->
+		
+		<button class="paypal-button large" type="submit">Buy Now</button>
+	</form>
+
+
+<!-- 	<form style="opacity: 1;" target="_top" class="paypal-button" method="POST"
+		action="https://www.paypal.com/cgi-bin/webscr">
+		<input value="buynow" name="button" type="hidden">
+		<input value="_cart" name="cmd" type="hidden">
+		<input value="dev.yong842@gmail.com" name="business" type="hidden">
+		<input value="1" name="upload" type="hidden">
+		<input value="2" name="rm" type="hidden">
+		<input value="utf-8" name="charset" type="hidden">
+		<input value="APL" name="item_number_1" type="hidden">
+		<input value="Apple" name="item_name_1" type="hidden">
+		<input value="1" name="quantity_1" type="hidden">
+		<input value="12.00" name="amount_1" type="hidden">
+		
+		<input value="AVC" name="item_number_2" type="hidden">
+		<input value="Avocado" name="item_name_2" type="hidden">
+		<input value="1" name="quantity_2" type="hidden">
+		<input value="16.00" name="amount_2" type="hidden">
+		<button class="paypal-button large" type="submit">Buy Now 2</button>
+	</form>
+
+
+	<form style="opacity: 1;" target="_top" method="POST"
+		action="https://www.paypal.com/cgi-bin/webscr">
+		<input value="_cart" name="cmd" type="hidden">
+		<input value="dev.yong842@gmail.com" name="business" type="hidden">
+		<input value="1" name="upload" type="hidden">
+		<input value="2" name="rm" type="hidden">
+		<input value="utf-8" name="charset" type="hidden">
+		
+		<input value="APL" name="item_number_1" type="hidden">
+		<input value="Apple" name="item_name_1" type="hidden">
+		<input value="1" name="quantity_1" type="hidden">
+		<input value="12.00" name="amount_1" type="hidden">
+		<button class="paypal-button large" type="submit">Buy Now 3</button>
+	</form> -->
+	
+	
+
+</div>

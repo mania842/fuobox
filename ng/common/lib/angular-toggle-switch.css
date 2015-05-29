@@ -1,0 +1,87 @@
+.toggle-switch {
+    /* border: 1px solid;
+    cursor: pointer;
+    display: inline-block; */
+    text-align: left;
+    overflow: hidden;
+    /* line-height: 8px; */
+    min-width: 5em;
+    height: 2em;
+    
+    
+    font-size: x-small;
+	margin-bottom: 0;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	/* padding: 6px 12px; */
+	border-radius: 4px;
+	color: #fff;
+ 	background-color: #5cb85c;
+ 	border-color: #4cae4c;
+}
+
+.toggle-switch.disabled > div > span.knob {
+    background: #4cae4c;
+}
+
+.toggle-switch span {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    padding: 4px;
+    text-align: center;
+    width: 33%;
+    white-space: nowrap;
+
+    box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.toggle-switch > div {
+    position: relative;
+    width: 150%;
+}
+
+.toggle-switch .knob {
+    border-left: 1px solid #4cae4c;
+    border-right: 1px solid #4cae4c;
+    width: 34%;
+    z-index: 100;
+}
+
+.toggle-switch .switch-on {
+    left: 0%;
+    height: 2em;
+}
+
+.toggle-switch .switch-off {
+    left: -50%;
+    height: 2em;
+}
+
+.toggle-switch .switch-left, .toggle-switch .switch-right {
+    z-index: 1;
+}
+
+.toggle-switch .switch-left {
+	color: #fff;
+	background: #398439;
+}
+
+.toggle-switch .switch-right {
+    color: #000;
+    background: #398439;
+}
+
+.toggle-switch-animate {
+    transition: left 0.5s;
+    -o-transition: left 0.5s;
+    -moz-transition: left 0.5s;
+    -webkit-transition: left 0.5s;
+}

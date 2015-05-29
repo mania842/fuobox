@@ -36,6 +36,21 @@ body {
   /* overflow: hidden; */
   /* background: url(images/body-background.png) #eae6d1; */
 }
+@media only screen and (max-width: 400px) {
+	body {
+		font-size: .8em;
+	}
+	.modal-header .modal-title {
+		font-size: 1.3em;
+	}
+}
+/* @media only screen and (max-device-width : 1224px)
+{
+	body {
+		font-size: .8em; 
+	}
+	
+} */
 body.iPhone.landscape {
 	font-size: .6em;
 }
@@ -155,3 +170,38 @@ fieldset legend {
 	color: blue;
 	text-decoration: none;
 }
+.table > tbody > tr > td {
+	padding: .5em;
+	line-height: 1em;
+	vertical-align: middle;
+}
+.table td.tdRight {
+	text-align: right;
+}
+.table td.tdCenter {
+	text-align: center;
+}
+.table-nonfluid {
+	width: auto;
+}
+.closeButton {
+	color: black;
+	text-decoration: none;
+	cursor: default;
+	font-weight: bold;
+}
+.closeButton:HOVER {
+	text-decoration: none;
+}
+
+.input-prepend input, .input-append input, .input-prepend input[class*="span"], .input-append input[class*="span"] {
+	width: 5em;
+	height: 2em;
+}
+.btn {
+	height: 2em;
+}
+/* .table.table-bordered .tax {
+	border-top: 3px double #ddd;
+	background-color: #FcFcFc;
+} */

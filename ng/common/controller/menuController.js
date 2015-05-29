@@ -3,7 +3,7 @@
     'use strict';
     
     angular.module('myApp').controller('MenuController', 
-    		function ($scope, $state, $stateParams, webId, appService) {
+    		function ($scope, $state, $stateParams, webId, appService, $modal) {
     	$scope.data = webId.getWeb();
     	$scope.categoryNav = [];
     	$scope.$on('service.webId:updated', function(event, data) {
@@ -29,16 +29,14 @@
     		init();
     	
     	
-    	console.log("$scope.categoryName", $scope.categoryName);
-    	
-    	
     	// menu
     	$scope.getMenus = function(section) {
     		return $scope.itemCategory[section]; 
     	};
     	
     	$scope.getFirstItemImg = function(section) {
-    		return $scope.itemCategory[section].IMG_PATH;
+    		if ($scope.itemCategory[section] && $scope.itemCategory[section].IMG_PATH)
+    			return $scope.itemCategory[section].IMG_PATH.SMALL;
     	};
     	
     	$scope.clickCategory = function(category) {
@@ -122,11 +120,9 @@
     		
     		
     		if (eachWidth <= minWidth) {
-//    			$scope.canContainOnlyOne = true;
     			eachWidth = availableWidth;
     			return;
     		} else {
-//    			$scope.canContainOnlyOne = false;
     			eachWidth = Math.max(eachWidth, minWidth);
     		}
     		return {
@@ -134,12 +130,20 @@
     			"margin-bottom" : appService.em(.5)
     		};
     	};
-    	$scope.getItemImgStyle = function(itemCode) {
+    	$scope.getItemImgStyle = function(itemCode, size) {
+    		var imgPath = size === 'M' ? $scope.data.ITEMS[itemCode].IMG_PATH.MEDIUM : size === 'L' ? $scope.data.ITEMS[itemCode].IMG_PATH.LARGE : $scope.data.ITEMS[itemCode].IMG_PATH.SMALL;
     		return {
-    			"background": "url('" + $scope.data.ITEMS[itemCode].IMG_PATH + "')",
+    			"background": "url('" + imgPath + "')",
     			"background-repeat": "no-repeat",
     	    	"background-size": "cover",
     	    	"background-position": "center"
+    		};
+    	};
+    	$scope.getItemImgIconStyle = function(itemCode) {
+    		var itemCodeView = document.getElementById(itemCode);
+    		var itemTdView = itemCodeView.getElementsByClassName('item')[0];
+    		return {
+    			"height" : itemTdView.offsetHeight - appService.em(.5)
     		};
     	};
     	$scope.getCartTdWidth = function(itemCode) {
@@ -148,6 +152,7 @@
     		var itemCodeView = document.getElementById(itemCode);
     		var cartTdView = itemCodeView.getElementsByClassName('cart')[0];
     		var width = cartTdView.offsetWidth - appService.em(1);
+    		
     		return {
     			"width" : width
     		};
@@ -158,17 +163,99 @@
     	$scope.getItemDetails = function(itemCode) {
     		return $scope.data.ITEMS[itemCode].DETAIL;
     	};
+    	$scope.openItemDetails = function(itemCode, index) {
+    		console.log(itemCode, index);
+    		console.log("$scope.categoryObj.CATEGORY", $scope.categoryObj.CATEGORY);
+    		var modalInstance = $modal.open({
+    			animation: true,
+    			templateUrl: 'ng/common/html/item-details.html',
+    			controller: 'ModalInstanceCtrl',
+    			resolve: {
+    				items: function () {
+    					var items = [];
+    					angular.forEach($scope.categoryObj.CATEGORY, function(itemCode) {
+    						$scope.data.ITEMS[itemCode].itemCode = itemCode;
+    						items.push($scope.data.ITEMS[itemCode]);
+    					});
+    					return items;
+    				},
+    				startIndex: function () {
+    					return index;
+    				},
+    				headerTitle: function () {
+    					var parentState = $scope.data.ITEMS[itemCode].PARENT_STATE;
+    					return $scope.data.ITEM_CATEGORY[parentState].TITLE; 
+    				}
+    				
+    			}
+    		});
+
+    		modalInstance.result.then(function (selectedItem) {
+    			$scope.selected = selectedItem;
+    		}, function () {
+    			console.log('Modal dismissed at: ' + new Date());
+    		});
+    	};
     	
-    	$scope.clickOnAddToCart = function(itemCode) {
+    	$scope.clickOnAddToCart = function(itemCode, quantity) {
     		if (!$scope.data.ALLOW_PAYMENT)
     			return;
     		
-    		console.log("itemCode", itemCode);
+    		$scope.data.addToCart(itemCode, quantity);
     	};
     	$scope.clickOnItemDetails = function(itemCode) {
     		console.log("clickOn item card", itemCode);
     	};
     	
 	});
+    
+    
+    
+    /*
+     * Modal Controller
+     * */
+    
+    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, startIndex, headerTitle, webId) {
+    	$scope.quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    	$scope.myQuantity = $scope.quantities[0];
+    	
+    	$scope.myInterval = 0;//5000;
+    	$scope.headerTitle = headerTitle;
+    	$scope.items = items;
+    	console.log("items", items);
+    	
+    	$scope.selected = {
+    		item: $scope.items[startIndex]
+    	};
+    	$scope.items[startIndex].active = true;
+    	
+    	$scope.getDetailsItemImgStyle = function(item) {
+    		return {
+    			"background": "url('" + item.IMG_PATH.LARGE + "')",
+    			"background-repeat": "no-repeat",
+    	    	"background-size": "cover",
+    	    	"background-position": "center"
+    		};
+    	};
+    	
+    	$scope.onSlideChanged = function (nextSlide, direction) {
+    		$scope.selected.item = nextSlide.$parent.item;
+    	};
+    	
+    	$scope.clickOnAddToCart = function(itemCode, quantity) {
+    		if (!webId.getWeb().ALLOW_PAYMENT)
+    			return;
+    		
+    		webId.getWeb().addToCart(itemCode, quantity);
+    	};
+    	
+    	$scope.ok = function () {
+//    		$modalInstance.close($scope.selected.item);
+    	};
+
+    	$scope.cancel = function () {
+    		$modalInstance.dismiss('cancel');
+    	};
+    });
     
 })();

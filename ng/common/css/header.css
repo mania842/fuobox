@@ -47,7 +47,7 @@
 	width: 70%;
 	overflow: hidden;
 }
-.web-landing-header-header span {
+.web-landing-header-header span.address {
 	text-align: right;
 	position: absolute;
 	left: 0;
@@ -61,8 +61,7 @@
   	text-overflow: ellipsis;
   	overflow: hidden;
 }
-.web-landing-header-rhs
-{
+.web-landing-header-rhs {
     position: absolute;
     top: .25em;
     right: .5em;
@@ -70,7 +69,6 @@
     text-align: right;
     white-space: nowrap;
 	text-overflow: ellipsis;
-	width: 15%;
 	overflow: hidden;
 }
 .web-landing-header-info

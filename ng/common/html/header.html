@@ -6,7 +6,14 @@
 			ng-src="{{$root.admin.web.logo}}" ng-show="$root.admin.web.logo"/>
 			<label1>{{hs.header}}</label1>
 		</div>
-		<span>{{$root.admin.web.getAddress()}}</span>
+		<div class="web-landing-header-rhs">
+			<toggle-switch
+				ng-show="$root.admin.web.KOR_SUPPORT"
+			    ng-model="$root.admin.web.isKor"
+			    knob-label="한글">
+			<toggle-switch>
+		</div>
+		<span class="address">{{$root.admin.web.getAddress()}}</span>
 		
 		
 		<!-- <div class="web-landing-header-line2" />
@@ -16,8 +23,9 @@
 			<h1 ng-style="getHeaderStyle()">{{hs.title}}</h1>
 			<!-- <div class="csmd-header-title-message"
 				ng-show="hs.isMobile && hs.message.length > 0">{{hs.message}}
-			</div>
-			<div class="web-landing-header-rhs">
+			</div> -->
+			<!-- <div class="web-landing-header-rhs">
+				<label class="btn btn-success" ng-model="radioModel" btn-radio="'Kor'" uncheckable>Left</label>
 				<small><small><small>
 				<button class="csmd-button" ng-click="bones.redirect('/report/UploadReport')" ng:show="$root.csmd.user.hasRole('ADMIN')">Upload Report File</button>
 				</small></small></small>

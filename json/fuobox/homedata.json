@@ -3,7 +3,13 @@
 	"TITLE" : "Fusion Orange",
 	"HOME" : "/",
 	"CSS" : "json/fuobox/the-style.css",
-	"ALLOW_PAYMENT" : false,
+	"KOR_SUPPORT" : true,
+	"ALLOW_PAYMENT" : true,
+	"PAYMENT_INFO" : {
+		"TAX": ".06",
+		"PAYPAL_ID" : "dev.yong842@gmail.com",
+		"DELIVERY_CHARGE" : 2.00
+	},
 	"STYLE" : {
 		"TITLE": {
 			"height" : "2.8em",
@@ -36,6 +42,10 @@
 		"STATE" : "menu",
 		"PATH" : "/menu/"
 	}, {
+		"NAME" : "Cart",
+		"STATE" : "cart",
+		"PATH" : "/cart/"
+	}, {
 		"NAME" : "Location",
 		"STATE" : "location",
 		"PATH" : "/location/"
@@ -44,30 +54,44 @@
 		"CATEGORY" : ["CHICKEN", "CUTLET", "BBQ", "SIDES", "COMBO"],
 		"CHICKEN" : {
 			"TITLE" : "Chicken",
+			"KOR" : "치킨",
+			"ENG" : "Chicken",
 			"CATEGORY" : ["CHICKEN1", "CHICKEN2", "CHICKEN3"],
-			"IMG" : "CHICKEN.png",
+			"IMG" : "CHICKEN",
+			"EXT" : "png",
 			"PARENT_STATE" : "menu"
 		},
 		"CUTLET" : {
 			"TITLE" : "Cutlet",
+			"KOR" : "Cutlet",
+			"ENG" : "Cutlet",
 			"CATEGORY" : ["CUTLET1", "CUTLET2", "CUTLET3", "CUTLET4"],
-			"IMG" : "CUTLET.png",
+			"IMG" : "CUTLET",
+			"EXT" : "png",
 			"PARENT_STATE" : "menu"
 		},
 		"BBQ" : {
 			"TITLE" : "BBQ",
+			"KOR" : "BBQ",
+			"ENG" : "BBQ",
 			"CATEGORY" : ["BBQ1", "BBQ2", "BBQ3"],
-			"IMG" : "BBQ.png",
+			"IMG" : "BBQ",
+			"EXT" : "png",
 			"PARENT_STATE" : "menu"
 		},
 		"SIDES" : {
 			"TITLE" : "Sides",
+			"KOR" : "Sides",
+			"ENG" : "Sides",
 			"CATEGORY" : ["SIDES1", "SIDES2", "SIDES3"],
-			"IMG" : "SIDES.png",
+			"IMG" : "SIDES",
+			"EXT" : "png",
 			"PARENT_STATE" : "menu"
 		},
 		"COMBO" : {
 			"TITLE" : "Combo",
+			"KOR" : "콤보",
+			"ENG" : "Combo",
 			"CATEGORY" : ["COMBO_A", "COMBO_B", "COMBO_C"],
 			"PARENT_STATE" : "menu"
 		}
@@ -75,92 +99,179 @@
 	"ITEMS" : {
 		"CHICKEN1" : {
 			"TITLE" : "Fried Chicken",
-			"IMG" : "CHICKEN1.jpg",
+			"KOR" : "프라이드 치킨",
+			"ENG" : "Fried Chicken",
+			"IMG" : "CHICKEN1",
+			"EXT" : "jpg",
 			"PRICE" : 9.99,
-			"DETAIL" : "4 pieces leg, 4 pieces breasts fried chicken w/ french fries"
+			"DETAIL" : "4 pieces leg, 4 pieces breasts fried chicken w/ french fries",
+			"DETAIL_KOR" : "일반 프랜차이즈 치킨과 견주어 손색없는 자신감으로 모십니다. 냉동닭이 아닌 생닭 그대로 만든 양념치킨",
+			"DETAIL_ENG" : "4 pieces leg, 4 pieces breasts fried chicken w/ french fries",
+			"PARENT_STATE" : "CHICKEN"
 		},
 		"CHICKEN2" : {
 			"TITLE" : "Chicken Wings",
-			"IMG" : "CHICKEN2.jpg",
+			"KOR" : "치킨 윙",
+			"ENG" : "Chicken Wings",
+			"IMG" : "CHICKEN2",
+			"EXT" : "jpg",
 			"PRICE" : 8.99,
-			"DETAIL" : "w/ french fries"
+			"DETAIL" : "w/ french fries",
+			"DETAIL_KOR" : "일반 윙가게와 달리 미디엄 사이즈로 만듭니다.",
+			"DETAIL_ENG" : "w/ french fries",
+			"PARENT_STATE" : "CHICKEN"
 		},
 		"CHICKEN3" : {
 			"TITLE" : "Sweet & Sour Chicken",
-			"IMG" : "CHICKEN3.jpg",
+			"IMG" : "CHICKEN3",
+			"KOR" : "닭강정",
+			"ENG" : "Sweet & Sour Chicken",
+			"EXT" : "jpg",
 			"PRICE" : 7.99,
-			"DETAIL" : "sweet & spicy homemade chicken"
+			"DETAIL" : "sweet & spicy homemade chicken",
+			"DETAIL_KOR" : "순 가슴살로만 만든 새콤달콤 닭강정. 10여가지 재료로 만든 소스와 함께 약간 매콤하게 만듭니다",
+			"DETAIL_ENG" : "sweet & spicy homemade chicken",
+			"PARENT_STATE" : "CHICKEN"
 		},
 		"CUTLET1" : {
 			"TITLE" : "Pork Cutlet Pizza",
-			"IMG" : "CUTLET1.jpg",
-			"PRICE" : 7.99
+			"KOR" : "피자 돈까스",
+			"ENG" : "Pork Cutlet Pizza",
+			"IMG" : "CUTLET1",
+			"EXT" : "jpg",
+			"PRICE" : 7.99,
+			"DETAIL_KOR" : "BBQ rib 과 더불어 저희 퓨전오렌지의 주력상품...!!!  돈까스가 pizza dough 를 대신 합니다. 그 위에 야채와 새우, 브로콜리, 모짜렐라 치즈가 듬뿍.",
+			"DETAIL_ENG" : "",
+			"PARENT_STATE" : "CUTLET"
 		},
 		"CUTLET2" : {
 			"TITLE" : "Pork Cutlet",
-			"IMG" : "CUTLET2.jpg",
+			"KOR" : "돈까스",
+			"ENG" : "Pork Cutlet",
+			"IMG" : "CUTLET2",
+			"EXT" : "jpg",
 			"PRICE" : 7.99,
-			"DETAIL" : "comes  w/ steamed rice"
+			"DETAIL" : "comes  w/ steamed rice",
+			"DETAIL_KOR" : "comes  w/ steamed rice",
+			"DETAIL_ENG" : "comes  w/ steamed rice",
+			"PARENT_STATE" : "CUTLET"
 		},
 		"CUTLET3" : {
 			"TITLE" : "Chicken Cutlet",
-			"IMG" : "CUTLET3.jpg",
+			"KOR" : "치킨까스",
+			"ENG" : "Chicken Cutlet",
+			"IMG" : "CUTLET3",
+			"EXT" : "jpg",
 			"PRICE" : 6.99,
-			"DETAIL" : "comes  w/ steamed rice"
+			"DETAIL" : "comes  w/ steamed rice",
+			"DETAIL_KOR" : "comes  w/ steamed rice",
+			"DETAIL_ENG" : "comes  w/ steamed rice",
+			"PARENT_STATE" : "CUTLET"
 		},
 		"CUTLET4" : {
 			"TITLE" : "Fish Cutlet",
-			"IMG" : "CUTLET4.jpg",
+			"KOR" : "생선까스",
+			"ENG" : "Fish Cutlet",
+			"IMG" : "CUTLET4",
+			"EXT" : "jpg",
 			"PRICE" : 6.99,
-			"DETAIL" : "comes  w/ steamed rice"
+			"DETAIL" : "comes  w/ steamed rice",
+			"DETAIL_KOR" : "comes  w/ steamed rice",
+			"DETAIL_ENG" : "comes  w/ steamed rice",
+			"PARENT_STATE" : "CUTLET"
 		},
 		"BBQ1" : {
 			"TITLE" : "Pork Rib",
-			"IMG" : "BBQ1.jpg",
-			"PRICE" : 8.99
+			"KOR" : "돼지 갈비",
+			"ENG" : "Pork Rib",
+			"IMG" : "BBQ1",
+			"EXT" : "jpg",
+			"PRICE" : 8.99,
+			"DETAIL_KOR" : "먼저, 고기의 잡내를 없애기 위해 세번 삶아 낸 뒤 11가지의 재료를 곁들여 만든 소스로 구워 냅니다",
+			"DETAIL_ENG" : "",
+			"PARENT_STATE" : "BBQ"
 		},
 		"BBQ2" : {
 			"TITLE" : "SamGyupSal",
-			"IMG" : "BBQ2.jpg",
-			"PRICE" : 7.99
+			"KOR" : "제육볶음",
+			"ENG" : "SamGyupSal",
+			"IMG" : "BBQ2",
+			"EXT" : "jpg",
+			"PRICE" : 7.99,
+			"DETAIL_KOR" : "최고급 돼지 목살을 같은 방법으로 잡내를 잡은 뒤 각종 야채와 더불어 저희만의 특별한 소스로 요리를 합니다",
+			"DETAIL_ENG" : "",
+			"PARENT_STATE" : "BBQ"
 		},
 		"BBQ3" : {
 			"TITLE" : "Stir Fried Beef",
-			"IMG" : "BBQ3.jpg",
-			"PRICE" : 7.99
+			"KOR" : "불고기",
+			"ENG" : "Stir Fried Beef",
+			"IMG" : "BBQ3",
+			"EXT" : "jpg",
+			"PRICE" : 7.99,
+			"DETAIL_KOR" : "이제는 웬만한 미국인들도 아는 한국 전통의 불고기 입니다",
+			"DETAIL_ENG" : "",
+			"PARENT_STATE" : "BBQ"
 		},
 		"SIDES1" : {
 			"TITLE" : "Sea Food Noodle",
-			"IMG" : "SIDES1.jpg",
+			"KOR" : "해물짬뽕",
+			"ENG" : "Sea Food Noodle",
+			"IMG" : "SIDES1",
+			"EXT" : "jpg",
 			"PRICE" : 7.99,
-			"DETAIL" : "Korean style spicy(& sweet)"
+			"DETAIL" : "Korean style spicy(& sweet)",
+			"DETAIL_KOR" : "국물이 탁하지 않게 깔끔하게 모십니다",
+			"DETAIL_ENG" : "Korean style spicy(& sweet)",
+			"PARENT_STATE" : "BBQ"
 		},
 		"SIDES2" : {
 			"TITLE" : "House Fried Rice",
-			"IMG" : "SIDES2.jpg",
+			"KOR" : "볶음밥",
+			"ENG" : "House Fried Rice",
+			"IMG" : "SIDES2",
+			"EXT" : "jpg",
 			"PRICE" : 5.99,
-			"DETAIL" : "vegetable, shrimp, meat (chicken, beef)"
+			"DETAIL" : "vegetable, shrimp, meat (chicken, beef)",
+			"DETAIL_KOR" : "남부 미국인들의 입맛에 맞춘 야채 볶음밥",
+			"DETAIL_ENG" : "vegetable, shrimp, meat (chicken, beef)",
+			"PARENT_STATE" : "BBQ"
 		},
 		"SIDES3" : {
 			"TITLE" : "Spicy Rice Cake",
-			"IMG" : "SIDES3.jpg",
+			"KOR" : "떡볶이",
+			"ENG" : "Spicy Rice Cake",
+			"IMG" : "SIDES3",
+			"EXT" : "jpg",
 			"PRICE" : 7.99,
-			"DETAIL" : "w/ fish cake"
+			"DETAIL" : "w/ fish cake",
+			"DETAIL_KOR" : "매워도 푸짐한 맛 때문에 다시찾게 되는.....",
+			"DETAIL_ENG" : "w/ fish cake",
+			"PARENT_STATE" : "BBQ"
 		},
 		"COMBO_A" : {
 			"TITLE" : "Combo A",
+			"KOR" : "콤보 A",
+			"ENG" : "Combo A",
 			"IMG" : "",
-			"PRICE" : 29.99
+			"PRICE" : 29.99,
+			"PARENT_STATE" : "COMBO"
 		},
 		"COMBO_B" : {
 			"TITLE" : "Combo B",
+			"KOR" : "콤보 B",
+			"ENG" : "Combo B",
 			"IMG" : "",
-			"PRICE" : 39.99
+			"PRICE" : 39.99,
+			"PARENT_STATE" : "COMBO"
 		},
 		"COMBO_C" : {
-			"TITLE" : "Combo 3",
+			"TITLE" : "Combo C",
+			"KOR" : "콤보 C",
+			"ENG" : "Combo C",
 			"IMG" : "",
-			"PRICE" : 49.99
+			"PRICE" : 49.99,
+			"PARENT_STATE" : "COMBO"
 		}
 	},
 	"LOCATION" : {
@@ -196,8 +307,7 @@
 			"DAY" : "SUN",
 			"OPEN" : "11:00 AM",
 			"CLOSE" : "8:00 PM"
-		}
-		]
+		}]
 	}
 	
 }

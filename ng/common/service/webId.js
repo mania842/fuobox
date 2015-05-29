@@ -6,7 +6,7 @@
     'use strict';
     
     angular.module('myApp').service('webId', 
-	function ($http, $rootScope, $location, appService) {
+	function ($http, $rootScope, $location, $cookieStore, appService) {
     	var service = this;
     	var weekdayMap = { "SUN": 0, "MON": 1, "TUE": 2, "WED": 3, "THU": 4, "FRI": 5, "SAT": 6};
         var weekdayNumMap = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -139,20 +139,54 @@
     		    	var imgPath = 'json/' + homepage + "/img/";
     		    	if (service.web.ITEMS) {
 	    		    	angular.forEach(service.web.ITEMS, function(item) {
-	    		    		if (item.IMG)
-	    		    			item.IMG_PATH = imgPath + item.IMG;
+	    		    		if (item.IMG) {
+	    		    			item.IMG_PATH = {};
+	    		    			item.IMG_PATH.SMALL = imgPath + "100/" + item.IMG + "." + item.EXT;
+	    		    			item.IMG_PATH.MEDIUM = imgPath + "200/" + item.IMG + "." + item.EXT;
+	    		    			item.IMG_PATH.LARGE = imgPath + "500/" + item.IMG + "." + item.EXT;
+	    		    		}
 	    		        });
     		    	}
     		    	if (service.web.ITEM_CATEGORY) {
 	    		    	angular.forEach(service.web.ITEM_CATEGORY.CATEGORY, function(item) {
 	    		    		if (service.web.ITEM_CATEGORY[item] && service.web.ITEM_CATEGORY[item].IMG) {
-	    		    			service.web.ITEM_CATEGORY[item].IMG_PATH = imgPath + service.web.ITEM_CATEGORY[item].IMG;
+	    		    			var cItem = service.web.ITEM_CATEGORY[item];
+	    		    			
+	    		    			cItem.IMG_PATH = {};
+	    		    			cItem.IMG_PATH.SMALL = imgPath + "100/" + cItem.IMG + "." + cItem.EXT;
+	    		    			cItem.IMG_PATH.MEDIUM = imgPath + "200/" + cItem.IMG + "." + cItem.EXT;
+	    		    			cItem.IMG_PATH.LARGE = imgPath + "500/" + cItem.IMG + "." + cItem.EXT;
+	    		    			
 	    		    		}
 	    		        });
     		    	}
+    		    	if (service.web.ALLOW_PAYMENT) {
+    		    		var cartCookie = $cookieStore.get('cart');
+    		    		service.web.CART = cartCookie;
+    		    	}
+    		    	
+    		    	if (service.web.KOR_SUPPORT) {
+	    		    	var isKorCookie = $cookieStore.get('isKor');
+	    		    	if (!isKorCookie) {
+	    		    		$cookieStore.put('isKor', false);
+	    		    		isKorCookie = false;
+	    		    	}
+	    		    	service.web.isKor = isKorCookie;
+    		    	}
+    		    	
     		    	return service.web;
     	    	}).then(function() {
     	    		$rootScope.title = service.web.TITLE;
+    	    		
+    	    		if (service.web.KOR_SUPPORT) {
+	    	    		$rootScope.$watch(function() {
+	    	      		  return service.web.isKor;
+		    	      	}, function watchCallback(newValue, oldValue) {
+		    	      		$cookieStore.put('isKor', newValue);
+		    	      		langChanged(newValue);
+		    	      	});
+    	    		}
+    	    		
     	    		$rootScope.$broadcast('service.webId:updated', service.getWeb());
     	    		appService.setCheckingOpenHours(service.web);
     	    	});
@@ -160,11 +194,23 @@
     		
     		return service.getDataPromise;
     	};
-
+    	var langChanged = function(isKor) {
+    		angular.forEach(service.web.ITEM_CATEGORY.CATEGORY, function(categoryCode) {
+				var category = service.web.ITEM_CATEGORY[categoryCode];
+				category.TITLE = isKor ? category.KOR : category.ENG;
+			});
+    		
+    		angular.forEach(service.web.ITEMS, function(item) {
+    			item.TITLE = isKor ? item.KOR : item.ENG;
+    			item.DETAIL = isKor ? item.DETAIL_KOR : item.DETAIL_ENG;
+			});
+    		
+    		$rootScope.$broadcast('service.webId:lang:updated', service.getWeb());
+    	};
+    	
 //    	/**
 //    	 * Load user info when service is created
 //    	 */
-//    	service.loadWebData();
     	
 	    //-----------------------------------------------------------------------
     	
@@ -172,7 +218,6 @@
     	 * Get web
     	 */
     	service.getWeb = function() {
-    		
     		return service.loadWebData();
     	};
     	
@@ -222,6 +267,60 @@
 	    	appService.setCheckingOpenHours(service.web);
     	};
     	
+    	service.web.getTotalQuantity = function() {
+    		if (!service.web.CART)
+    			return 0;
+    		else {
+    			var count = 0;
+    			angular.forEach(service.web.CART, function(item) {
+    				count += item.quantity;
+    			});
+    			return count;
+    		}
+    	};
+    	service.web.getTotalTax = function() {
+    		var totalTax = 0;
+    		angular.forEach(service.web.CART_DATA, function(item) {
+    			totalTax += item.tax * item.quantity; 
+    		});
+    		return totalTax;
+    	};
+    	service.web.getTotalPrice = function() {
+    		var totalPrice = 0;
+    		angular.forEach(service.web.CART_DATA, function(item) {
+    			totalPrice += (item.price * item.quantity) + (item.tax * item.quantity); 
+    		});
+    		return totalPrice;
+    	};
+    	
+    	service.web.addToCart = function(itemCode, quantity, removeAll) {
+    		if (!itemCode || quantity == 0)
+    			return;
+    		if (!service.web.CART)
+    			service.web.CART = {};
+    		
+    		if (!service.web.CART[itemCode]) {
+    			service.web.CART[itemCode] = {};
+        		service.web.CART[itemCode].itemCode = itemCode;
+        		service.web.CART[itemCode].quantity = quantity;
+    			
+    		} else {
+    			if (removeAll) {
+    				delete service.web.CART[itemCode];
+    			} else {
+    				service.web.CART[itemCode].quantity += quantity;
+    			}
+    		}
+    		
+    		$cookieStore.put('cart', service.web.CART);
+    	};
+    	
+    	service.web.getItem = function(itemCode) {
+    		return service.web.ITEMS[itemCode];
+    	};
+    	
+    	
+    	service.loadWebData();
 	    //-----------------------------------------------------------------------
 	});
 })();

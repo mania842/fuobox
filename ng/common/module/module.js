@@ -6,14 +6,14 @@
 	'use strict';
 
 	// Define our module.
-	var module = angular.module('myApp', [ 'ui.bootstrap', 'ui.router', 'ngSanitize', 'duScroll']);
+	var module = angular.module('myApp', [ 'ngCookies', 'ui.bootstrap', 'ui.router', 'ngAnimate', 'ngTouch', 'ngSanitize', 'duScroll', 'toggle-switch']);
 
 	module.value('duScrollDuration', 500);
 	module.value('duScrollBottomSpy', true);
 	
 	// Configure app
 	module.config(function($stateProvider, $urlRouterProvider) {
-
+		console.log("config");
 		// For any unmatched url, redirect to /state1
 		$urlRouterProvider.when('/', '/menu');
 		$urlRouterProvider.otherwise("/");
@@ -31,6 +31,10 @@
 			url : "/category/:categoryName",
 			templateUrl : "ng/common/html/item-category.html",
 			controller: 'MenuController'
+		}).state('cart', {
+			url : "/cart",
+			templateUrl : "ng/common/html/cart.html",
+			controller: 'CartController'
 		});
 	});
 	
@@ -56,19 +60,6 @@
 		.otherwise({ redirectTo : '/' });
 	});*/
 
-	/*module.factory('page', function() {
-		var title = 'default';
-
-		return {
-			title : function() {
-				return title;
-			},
-			setTitle : function(newTitle) {
-				title = newTitle;
-			}
-		};
-	});*/
-	
 	module.run(function($rootScope, $location, webId, appService) {
 		document.addEventListener("touchstart", function() {},false);
 		Date.prototype.stdTimezoneOffset = function() {
@@ -91,7 +82,7 @@
         
         console.log("$location.absUrl()", $location.absUrl());
         console.log("$location.host();", $location.host());
-        webId.loadWebData();
+//        webId.loadWebData();
 		
 		$rootScope.admin = {
     		web : webId.web,
@@ -153,6 +144,24 @@
 	    };
 	});
 	
+	angular.module('myApp').directive('onCarouselChange', function ($parse) {
+		return {
+			require: 'carousel',
+			link: function (scope, element, attrs, carouselCtrl) {
+				var fn = $parse(attrs.onCarouselChange);
+			    var origSelect = carouselCtrl.select;
+			    carouselCtrl.select = function (nextSlide, direction) {
+			    	if (nextSlide !== this.currentSlide) {
+			    		fn(scope, {
+			    			nextSlide: nextSlide,
+			    			direction: direction,
+			    		});
+			    	}
+			    	return origSelect.apply(this, arguments);
+			    };
+			}
+		};
+	});
 	
 	angular.module('myApp').controller('HomeController', 
     		function ($scope, $location, appService, webId) {
