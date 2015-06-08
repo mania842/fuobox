@@ -1,0 +1,41 @@
+<div class="center-screen order">
+	<h3>Thanks for your order</h3>
+	
+	<div>
+		<!-- items -->
+		<table class="table table-bordered short">
+			<!-- header -->
+			<tr class="well">
+				<td class="tdCenter"><b>Item</b></td>
+				<td class="tdCenter"><b>Quantity</b></td>
+				<td class="tdRight"><b>Price</b></td>
+			</tr>
+
+			<!-- cart items -->
+			<tr ng-repeat="item in items | orderBy:'name'">
+				<td>{{item.name}}</td>
+				<td class="tdCenter">{{item.quantity}}</td>
+				<td class="tdRight">{{item.price * item.quantity | currency}}</td>
+			</tr>
+			
+			<tr>
+				<td><b>Tax</b></td>
+				<td class="tdCenter"></td>
+				<td class="tdRight">{{payment.totalTax | currency}}</td>
+			</tr>
+			
+			<tr ng-show="contactInfo.radioModel == 'delivery'">
+				<td><b>Delivery Fee</b></td>
+				<td class="tdCenter"></td>
+				<td class="tdRight">{{$root.admin.web.PAYMENT_INFO.DELIVERY_CHARGE | currency}}</td>
+			</tr>
+			
+			<!-- footer -->
+			<tr class="well">
+				<td><b>Total</b></td>
+				<td class="tdCenter"><b>{{payment.totalQuantity}}</b></td>
+				<td class="tdRight"><b>{{payment.totalPrice | currency}}</b></td>
+			</tr>
+		</table>
+	</div>
+</div>

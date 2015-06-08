@@ -1,3 +1,72 @@
+.alert {
+  position: fixed;
+  top: 5.5em;
+  left: 0px;
+  right: 0px;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+  z-index: 1000;
+  padding: 0;
+  border: none;
+  cursor: default;
+}
+
+.alert-success {
+    background-color: #DFF0D8;
+    color: #468847;
+    border: 1px solid #305500;
+    border-top: 0;
+    transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	overflow-y: hidden;
+	max-height: 10em; /* approximate max height */
+}
+.alert-error {
+    background-color: #ffe2e1;
+    color: #BD362F;
+    border: 1px solid #BD362F;
+    border-top: 0;
+    transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	overflow-y: hidden;
+	max-height: 10em; /* approximate max height */
+}
+
+.alert-success > div,
+.alert-error > div {
+	padding: .3em;
+	white-space: nowrap;
+  	overflow: hidden;
+}
+.alert-success.closed,
+.alert-error.closed {
+	max-height: 0;
+	color: inherit;
+}
+.alert table {
+	margin: .3em .5em; 
+}
+.alert table td {
+	vertical-align: top;
+	padding: 0 .3em;
+}
+.alert span {
+	font-weight: bold;
+	vertical-align: top;
+	padding: .3em;
+}
+.alert pre {
+	font-family: inherit;
+  	font-size: 1em;
+  	padding: 0;
+  	margin: 0;
+  	line-height: 1.3em;
+  	word-break: break-word;
+}
+
+
+
 .web-landing-header {
     position: absolute;
     top: 0;

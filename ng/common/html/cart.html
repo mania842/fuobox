@@ -43,17 +43,19 @@
 				<td class="tdRight">{{$root.admin.web.getTotalTax() | currency}}</td>
 				<td />
 			</tr>
-			<!-- <tr>
-				<td><b>Delivery</b></td>
-				<td></td>
-				<td class="tdRight">{{data.PAYMENT_INFO.DELIVERY_CHARGE | currency}}</td>
+			
+			<tr ng-show="contactInfo.radioModel == 'delivery'">
+				<td><b>Delivery Fee</b></td>
+				<td class="tdCenter"></td>
+				<td class="tdRight">{{$root.admin.web.PAYMENT_INFO.DELIVERY_CHARGE | currency}}</td>
 				<td />
-			</tr> -->
+			</tr>
+			
 			<!-- footer -->
 			<tr class="well">
 				<td><b>Total</b></td>
 				<td class="tdCenter"><b>{{$root.admin.web.getTotalQuantity()}}</b></td>
-				<td class="tdRight"><b>{{$root.admin.web.getTotalPrice() | currency}}</b></td>
+				<td class="tdRight"><b>{{$root.admin.web.getTotalPrice(contactInfo.radioModel == 'delivery') | currency}}</b></td>
 				<td />
 			</tr>
 		</table>
@@ -61,112 +63,107 @@
 	
 	<div class="checkout">
 		<div class="btn-group">
-	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'carryOut'" uncheckable>Carry Out</label>
-	        <label class="btn btn-success" ng-model="radioModel" btn-radio="'delivery'" uncheckable>Delivery</label>
-	    </div>
-    	<!-- {{radioModel}} -->
-		<!-- <button class="web-button checkout">Delivery</button> -->
-		<!-- <button class="web-button checkout">Delivery</button> -->	
+	        <label class="btn btn-success" ng-model="contactInfo.radioModel" btn-radio="'carryOut'" uncheckable>Carry Out</label>
+	        <label class="btn btn-success" ng-model="contactInfo.radioModel" btn-radio="'delivery'" uncheckable>Delivery</label>
+	    </div>	
 	</div>
 	
-	<div class="phone-form">
-	Phone: (<input type="text" name="phone-1" maxlength="3">) <input
-		type="text" name="phone-2" maxlength="3">- <input type="text"
-		name="phone-3" maxlength="4">
+	<div>
+		<div class="info-form">
+			<form name="myForm">
+			<table>
+				<tr class="name-form">
+					<td class="tdRight">Name:</td>
+					<td><input ng-class="{error: payInfo.clicked && contactInfo.firstName.length <= 0}" type="text" ng-model="contactInfo.firstName" placeholder="First Name">
+						<input type="text" ng-model="contactInfo.lastName" placeholder="Last Name"></td>
+				</tr>
+				<tr class="email-form">
+					<td class="tdRight">Email:</td>
+					<td>
+						<input ng-class="{error: payInfo.clicked && (contactInfo.email.length <= 0 || !myForm.email.$valid)}"
+						type="email" name="email" ng-model="contactInfo.email" placeholder="me@example.com">
+					</td>
+				</tr>
+				<tr class="phone-form">
+					<td class="tdRight">Phone:</td>
+					<td><input ng-class="{error: payInfo.clicked && contactInfo.phone1.length != 3}" production-qty type="text" name="phone-1" maxlength="3" ng-model="contactInfo.phone1">
+					 - <input ng-class="{error: payInfo.clicked && contactInfo.phone2.length != 3}" production-qty type="text" name="phone-2" maxlength="3" ng-model="contactInfo.phone2">
+					 - <input ng-class="{error: payInfo.clicked && contactInfo.phone3.length != 4}" production-qty type="text" name="phone-3" maxlength="4" ng-model="contactInfo.phone3">
+					</td>
+				</tr>
+				<tr ng-show="contactInfo.radioModel == 'delivery'">
+					<td class="tdRight">Address:</td>
+					<td><input ng-class="{error: payInfo.clicked && contactInfo.addr.line1.length <= 0}" type="text" ng-model="contactInfo.addr.line1" placeholder="Street Address"></td>
+				</tr>
+				<tr ng-show="contactInfo.radioModel == 'delivery'">
+					<td class="tdRight"></td>
+					<td><input type="text" ng-model="contactInfo.addr.line2" placeholder="Apt, Suite (Optional)"></td>
+				</tr>
+				<tr class="addr-form2" ng-show="contactInfo.radioModel == 'delivery'">
+					<td class="tdRight"></td>
+					<td><input class="city" ng-class="{error: payInfo.clicked && contactInfo.addr.city.length <= 0}" type="text" ng-model="contactInfo.addr.city" placeholder="City">
+						<select ng-model="contactInfo.addr.state" ng-options="state.name for state in stateList">
+						</select>
+						<input class="zipcode" ng-class="{error: payInfo.clicked && contactInfo.addr.zipcode.length != 5}"
+						production-qty type="text" maxlength="5"
+						ng-model="contactInfo.addr.zipcode" placeholder="Zip code">
+					</td>
+				</tr>
+			</table>
+			</form>
+			
+		</div>
+		<div class="payment-method">
+			<button class="web-button" ng-click="clickOnPay('cash')" ng-disabled="cart.length <= 0">Pay Cash</button>
+			<button class="web-button" ng-click="clickOnPay('paypal')" ng-disabled="cart.length <= 0">Pay via Paypal</button>
+		</div>
 	</div>
-
-
-	<!-- <button ng-click="sendEmail()">send email</button> -->
-
-	In testing
+	
 	<!-- <form style="opacity: 1;" target="_top" class="paypal-button"
-		action="https://www.paypal.com/cgi-bin/webscr" method="post"> -->
-	<form style="opacity: 1;" target="_top" class="paypal-button"
-		action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+		action="https://www.paypal.com/cgi-bin/webscr" method="post"> https://www.sandbox.paypal.com/cgi-bin/webscr-->
+	<form id="form" style="opacity: 1;" target="_top" class="paypal-button"
+		action="https://www.paypal.com/cgi-bin/webscr" method="get">
 		
 		<div id="errorBox" class="hide"></div>
 		<input value="buynow" name="button" type="hidden">
 		<input value="_cart" name="cmd" type="hidden">
-		<input value="dev.yong842@gmail.com" name="business" type="hidden">
+		<input value="{{$root.admin.web.PAYMENT_INFO.PAYPAL_ID}}" name="business" type="hidden">
 		<input value="1" name="upload" type="hidden">
 		<input value="2" name="rm" type="hidden">
 		
-		<input value="Chicken" name="item_name_1" type="hidden">
-		<input value="1" name="quantity_1" type="hidden">
-		<input value="10.99" name="amount_1" type="hidden">
-		<input value="USD" name="currency_code_1" type="hidden">
-		<input value="3.50" name="tax_1" type="hidden">
+		<input type="hidden" name="return" value="{{url.completed}}">
+    	<input type="hidden" name="cancel_return" value="{{url.cancel}}">
 		
-		<input value="Fried" name="item_name_2" type="hidden">
-		<input value="1" name="quantity_2" type="hidden">
-		<input value="8.99" name="amount_2" type="hidden">
-		<input value="USD" name="currency_code_2" type="hidden">
-		<input value="1.50" name="tax_2" type="hidden">
+		<input ng-repeat="item in cart | orderBy:'name'" value="{{item.name}}" name="item_name_{{$index + 1}}" type="hidden">
+		<input ng-repeat="item in cart | orderBy:'name'" value="{{item.quantity}}" name="quantity_{{$index + 1}}" type="hidden">
+		<input ng-repeat="item in cart | orderBy:'name'" value="{{item.price}}" name="amount_{{$index + 1}}" type="hidden">
+		<input ng-repeat="item in cart | orderBy:'name'" value="USD" name="currency_code_{{$index + 1}}" type="hidden">
 		
-		<input value="Rice" name="item_name_3" type="hidden">
-		<input value="1" name="quantity_3" type="hidden">
-		<input value="5.99" name="amount_3" type="hidden">
-		<input value="USD" name="currency_code_3" type="hidden">
-		<input value="1.11" name="tax_3" type="hidden">
+		<input value="Tax" name="item_name_{{cart.length + 1}}" type="hidden">
+		<input value="1" name="quantity_{{cart.length + 1}}" type="hidden">
+		<input value="{{$root.admin.web.getTotalTax() | currency}}" name="amount_{{cart.length + 1}}" type="hidden">
+		<input value="USD" name="currency_code_{{cart.length + 1}}" type="hidden">
+		<!-- <input ng-repeat="item in cart | orderBy:'name'" value="{{item.tax | currency}}" name="tax_{{$index + 1}}" type="hidden"> -->
 		
-		
-		
-		<input type="hidden" name="first_name" value="YongMoon">
-		<input type="hidden" name="last_name" value="Lee">
+		<input type="hidden" name="first_name" value="{{contactInfo.firstName}}">
+		<input type="hidden" name="last_name" value="{{contactInfo.lastName}}">
 				
-		<input type="hidden" name="address_override" value="1">
-		<input type="hidden" name="address1" value="3622 Meadowglenn Village Ln">
-		<input type="hidden" name="address2" value="Apt A">
-		<input type="hidden" name="city" value="Atlanta">
-		<input type="hidden" name="state" value="GA">
-		<input type="hidden" name="zip" value="30340">
+		<input type="hidden" name="address_override" value="{{contactInfo.radioModel == 'delivery' ? 1 : 0}}">
+		<input type="hidden" name="address1" value="{{contactInfo.addr.line1}}">
+		<input type="hidden" name="address2" value="{{contactInfo.addr.line2}}">
+		<input type="hidden" name="city" value="{{contactInfo.addr.city}}">
+		<input type="hidden" name="state" value="{{contactInfo.addr.state.abbreviation}}">
+		<input type="hidden" name="zip" value="{{contactInfo.addr.zipcode}}">
 		<input type="hidden" name="county" value="US">
-		<input type="hidden" name="email" value="mania842@gmail.com">
-		<input type="hidden" name="night_phone_a" value="917">
-		<input type="hidden" name="night_phone_b" value="504">
-		<input type="hidden" name="night_phone_c" value="9043">
-		<!-- <input TYPE="hidden" NAME="return" value="#"> -->
+		<input type="hidden" name="email" value="{{contactInfo.email}}">
+		<input type="hidden" name="night_phone_a" value="{{contactInfo.phone1}}">
+		<input type="hidden" name="night_phone_b" value="{{contactInfo.phone2}}">
+		<input type="hidden" name="night_phone_c" value="{{contactInfo.phone3}}">
 		
-		<button class="paypal-button large" type="submit">Buy Now</button>
+		<!-- <button class="paypal-button large" type="submit">Buy Now</button> -->
 	</form>
 
-
-<!-- 	<form style="opacity: 1;" target="_top" class="paypal-button" method="POST"
-		action="https://www.paypal.com/cgi-bin/webscr">
-		<input value="buynow" name="button" type="hidden">
-		<input value="_cart" name="cmd" type="hidden">
-		<input value="dev.yong842@gmail.com" name="business" type="hidden">
-		<input value="1" name="upload" type="hidden">
-		<input value="2" name="rm" type="hidden">
-		<input value="utf-8" name="charset" type="hidden">
-		<input value="APL" name="item_number_1" type="hidden">
-		<input value="Apple" name="item_name_1" type="hidden">
-		<input value="1" name="quantity_1" type="hidden">
-		<input value="12.00" name="amount_1" type="hidden">
-		
-		<input value="AVC" name="item_number_2" type="hidden">
-		<input value="Avocado" name="item_name_2" type="hidden">
-		<input value="1" name="quantity_2" type="hidden">
-		<input value="16.00" name="amount_2" type="hidden">
-		<button class="paypal-button large" type="submit">Buy Now 2</button>
-	</form>
-
-
-	<form style="opacity: 1;" target="_top" method="POST"
-		action="https://www.paypal.com/cgi-bin/webscr">
-		<input value="_cart" name="cmd" type="hidden">
-		<input value="dev.yong842@gmail.com" name="business" type="hidden">
-		<input value="1" name="upload" type="hidden">
-		<input value="2" name="rm" type="hidden">
-		<input value="utf-8" name="charset" type="hidden">
-		
-		<input value="APL" name="item_number_1" type="hidden">
-		<input value="Apple" name="item_name_1" type="hidden">
-		<input value="1" name="quantity_1" type="hidden">
-		<input value="12.00" name="amount_1" type="hidden">
-		<button class="paypal-button large" type="submit">Buy Now 3</button>
-	</form> -->
-	
-	
-
+	<div id="preview" ng-show="spinnerActive">
+		<span us-spinner="{lines: 9, radius:19, width:8, length: 16, color: '#fff'}" spinner-key="spinner-1"></span>
+	</div>
 </div>

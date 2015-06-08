@@ -50,6 +50,25 @@
 	font-size: .7em;
 }
 
+.center-screen.order {
+	padding: 1em;
+}
+.center-screen.order h3 {
+	color: #dd2f3c;
+	font-size: 2em;
+	font-style: italic;
+}
+.center-screen .table.table-bordered.short {
+	margin-top: 2em;
+	margin-left: auto;
+	margin-right: auto;
+}
+.table.table-bordered.short {
+	width: auto;
+}
+.table.table-bordered.short td {
+	padding: .7em 5em;
+}
 
 /* table td {
 border-left: 1px solid #000;

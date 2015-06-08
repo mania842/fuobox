@@ -17,7 +17,7 @@
 		<div class="modal-footer">
 			<div>
 				<button class="addToOrder web-button"
-					ng-click="clickOnAddToCart(item.itemCode, myQuantity)"
+					ng-click="clickOnAddToCart(item.itemCode, myQuantity, item.TITLE)"
 					ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">Add to Cart</button>
 				<select class="myQuantity" ng-model="myQuantity"
 					ng-options="quantity for quantity in quantities"
@@ -30,3 +30,4 @@
 		</div>
 	</slide>
 </carousel>
+<span class="details closeButton" ng-click="closeModal()">&#10006;</span>

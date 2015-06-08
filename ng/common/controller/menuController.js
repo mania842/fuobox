@@ -164,8 +164,6 @@
     		return $scope.data.ITEMS[itemCode].DETAIL;
     	};
     	$scope.openItemDetails = function(itemCode, index) {
-    		console.log(itemCode, index);
-    		console.log("$scope.categoryObj.CATEGORY", $scope.categoryObj.CATEGORY);
     		var modalInstance = $modal.open({
     			animation: true,
     			templateUrl: 'ng/common/html/item-details.html',
@@ -197,11 +195,12 @@
     		});
     	};
     	
-    	$scope.clickOnAddToCart = function(itemCode, quantity) {
+    	$scope.clickOnAddToCart = function(itemCode, quantity, itemTitle) {
     		if (!$scope.data.ALLOW_PAYMENT)
     			return;
     		
     		$scope.data.addToCart(itemCode, quantity);
+    		appService.successNotification(quantity + " " + itemTitle + " added to cart.");
     	};
     	$scope.clickOnItemDetails = function(itemCode) {
     		console.log("clickOn item card", itemCode);
@@ -215,18 +214,20 @@
      * Modal Controller
      * */
     
-    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, startIndex, headerTitle, webId) {
+    angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, startIndex, headerTitle, webId, appService) {
     	$scope.quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     	$scope.myQuantity = $scope.quantities[0];
     	
     	$scope.myInterval = 0;//5000;
     	$scope.headerTitle = headerTitle;
     	$scope.items = items;
-    	console.log("items", items);
     	
     	$scope.selected = {
     		item: $scope.items[startIndex]
     	};
+    	angular.forEach($scope.items, function(item) {
+    		item.active = false;
+    	});
     	$scope.items[startIndex].active = true;
     	
     	$scope.getDetailsItemImgStyle = function(item) {
@@ -242,18 +243,22 @@
     		$scope.selected.item = nextSlide.$parent.item;
     	};
     	
-    	$scope.clickOnAddToCart = function(itemCode, quantity) {
+    	$scope.clickOnAddToCart = function(itemCode, quantity, itemTitle) {
     		if (!webId.getWeb().ALLOW_PAYMENT)
     			return;
     		
     		webId.getWeb().addToCart(itemCode, quantity);
+    		console.log("itemTitle", itemTitle);
+    		console.log("itemCode", itemCode);
+    		appService.successNotification(quantity + " " + itemTitle + " added to cart.");
+    		$modalInstance.dismiss('cancel');
     	};
     	
     	$scope.ok = function () {
 //    		$modalInstance.close($scope.selected.item);
     	};
 
-    	$scope.cancel = function () {
+    	$scope.closeModal = function () {
     		$modalInstance.dismiss('cancel');
     	};
     });

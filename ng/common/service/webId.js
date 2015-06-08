@@ -6,7 +6,7 @@
     'use strict';
     
     angular.module('myApp').service('webId', 
-	function ($http, $rootScope, $location, $cookieStore, appService) {
+	function ($http, $rootScope, $location, appService, $localStorage, $filter) {
     	var service = this;
     	var weekdayMap = { "SUN": 0, "MON": 1, "TUE": 2, "WED": 3, "THU": 4, "FRI": 5, "SAT": 6};
         var weekdayNumMap = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -161,14 +161,17 @@
 	    		        });
     		    	}
     		    	if (service.web.ALLOW_PAYMENT) {
-    		    		var cartCookie = $cookieStore.get('cart');
+//    		    		var cartCookie = $cookieStore.get('cart');
+    		    		var cartCookie = $localStorage.cart;
     		    		service.web.CART = cartCookie;
     		    	}
     		    	
     		    	if (service.web.KOR_SUPPORT) {
-	    		    	var isKorCookie = $cookieStore.get('isKor');
+    		    		var isKorCookie = $localStorage.isKor;
+//	    		    	var isKorCookie = $cookieStore.get('isKor');
 	    		    	if (!isKorCookie) {
-	    		    		$cookieStore.put('isKor', false);
+	    		    		$localStorage.isKor = false;
+//	    		    		$cookieStore.put('isKor', false);
 	    		    		isKorCookie = false;
 	    		    	}
 	    		    	service.web.isKor = isKorCookie;
@@ -182,7 +185,8 @@
 	    	    		$rootScope.$watch(function() {
 	    	      		  return service.web.isKor;
 		    	      	}, function watchCallback(newValue, oldValue) {
-		    	      		$cookieStore.put('isKor', newValue);
+		    	      		$localStorage.isKor = newValue;
+//		    	      		$cookieStore.put('isKor', newValue);
 		    	      		langChanged(newValue);
 		    	      	});
     	    		}
@@ -267,6 +271,12 @@
 	    	appService.setCheckingOpenHours(service.web);
     	};
     	
+    	service.web.setOrderCompleted = function() {
+    		delete service.web.CART;
+    		delete $localStorage.cart;
+    		delete $localStorage.payment;
+    	};
+    	
     	service.web.getTotalQuantity = function() {
     		if (!service.web.CART)
     			return 0;
@@ -294,8 +304,9 @@
     	};
     	
     	service.web.addToCart = function(itemCode, quantity, removeAll) {
-    		if (!itemCode || quantity == 0)
+    		if ((!itemCode || quantity == 0) && !removeAll)
     			return;
+    		
     		if (!service.web.CART)
     			service.web.CART = {};
     		
@@ -303,7 +314,7 @@
     			service.web.CART[itemCode] = {};
         		service.web.CART[itemCode].itemCode = itemCode;
         		service.web.CART[itemCode].quantity = quantity;
-    			
+    		
     		} else {
     			if (removeAll) {
     				delete service.web.CART[itemCode];
@@ -311,8 +322,8 @@
     				service.web.CART[itemCode].quantity += quantity;
     			}
     		}
-    		
-    		$cookieStore.put('cart', service.web.CART);
+    		$localStorage.cart = service.web.CART;
+//    		$cookieStore.put('cart', service.web.CART);
     	};
     	
     	service.web.getItem = function(itemCode) {

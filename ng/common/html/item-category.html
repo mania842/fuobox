@@ -32,7 +32,7 @@
 					<tr>
 						<td>
 							<div ng-class="{hiddenPay: !$root.admin.web.ALLOW_PAYMENT}">
-								<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode, myQuantity)">Add to Cart</button>
+								<button class="addToOrder web-button" ng-click="clickOnAddToCart(itemCode, myQuantity, getItemTitle(itemCode))">Add to Cart</button>
 								<select class="myQuantity" ng-model="myQuantity"
 									ng-options="quantity for quantity in quantities"
 									ng-disabled="!$root.admin.web.ALLOW_PAYMENT"></select>

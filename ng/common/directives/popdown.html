@@ -1,0 +1,15 @@
+<div class="alert">
+	<div ng-repeat = "msg in messageList.slice().reverse()" ng-show="show">
+		<div id="{{msg.id}}" class="alert-{{msg.status}}" ng-click="closeNotification(msg)">
+			<table>
+				<tr>
+					<td>&#10006;</td>
+					<td><pre>{{msg.message}}</pre></td>
+				</tr>
+			</table>
+			<!-- <div>
+				<span>&#10006;</span> <span>{{msg.message}}</span>
+			</div> -->
+		</div>
+	</div>
+</div>

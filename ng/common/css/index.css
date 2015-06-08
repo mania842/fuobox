@@ -175,10 +175,10 @@ fieldset legend {
 	line-height: 1em;
 	vertical-align: middle;
 }
-.table td.tdRight {
+td.tdRight {
 	text-align: right;
 }
-.table td.tdCenter {
+td.tdCenter {
 	text-align: center;
 }
 .table-nonfluid {

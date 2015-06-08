@@ -6,14 +6,15 @@
 	'use strict';
 
 	// Define our module.
-	var module = angular.module('myApp', [ 'ngCookies', 'ui.bootstrap', 'ui.router', 'ngAnimate', 'ngTouch', 'ngSanitize', 'duScroll', 'toggle-switch']);
+	var module = angular.module('myApp', [ 'ui.bootstrap',
+			'ui.router', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngStorage',
+			'duScroll', 'toggle-switch', 'angularSpinner' ]);
 
 	module.value('duScrollDuration', 500);
 	module.value('duScrollBottomSpy', true);
 	
 	// Configure app
 	module.config(function($stateProvider, $urlRouterProvider) {
-		console.log("config");
 		// For any unmatched url, redirect to /state1
 		$urlRouterProvider.when('/', '/menu');
 		$urlRouterProvider.otherwise("/");
@@ -35,31 +36,13 @@
 			url : "/cart",
 			templateUrl : "ng/common/html/cart.html",
 			controller: 'CartController'
+		}).state('order', {
+			url : "/order",
+			templateUrl : "ng/common/html/order.html",
+			controller: 'OrderController'
 		});
 	});
 	
-	// Configure app
-	/*module.config(function($routeProvider) {
-		$routeProvider.when('/', {
-			redirectTo: '/buffet/menu/gainesvillehomecooking',
-			resolve: {
-				myVar: function (webId) {
-					webId.loadWebData("gainesvillehomecooking");
-				}
-				
-			}
-		})
-		.when('/test', { templateUrl : 'ng/common/html/test.html' })
-		.when('/location/:homepage', {
-			templateUrl: 'ng/common/html/location.html',
-			controller: 'LocationController'
-		}).when('/about/:homepage', {
-			templateUrl: 'ng/common/html/about.html',
-			controller: 'AboutController'
-		})
-		.otherwise({ redirectTo : '/' });
-	});*/
-
 	module.run(function($rootScope, $location, webId, appService) {
 		document.addEventListener("touchstart", function() {},false);
 		Date.prototype.stdTimezoneOffset = function() {
@@ -72,18 +55,6 @@
             return this.getTimezoneOffset() < this.stdTimezoneOffset();
         };
         
-//		if ($location.absUrl().indexOf("gainesvillehomecooking.com") > -1) {
-//			$location.path('/buffet/menu/gainesvillehomecooking');
-//			webId.loadWebData("gainesvillehomecooking");
-//		} else if ($location.absUrl().indexOf("gainesvillehomecooking") > -1) {
-////			$location.path('/buffet/menu/gainesvillehomecooking');
-//			webId.loadWebData("gainesvillehomecooking");
-//		}
-        
-        console.log("$location.absUrl()", $location.absUrl());
-        console.log("$location.host();", $location.host());
-//        webId.loadWebData();
-		
 		$rootScope.admin = {
     		web : webId.web,
     		appService : appService
@@ -143,6 +114,23 @@
 	        }
 	    };
 	});
+	module.directive('productionQty', function() {
+		  return {
+		    require: 'ngModel',
+		    link: function (scope, element, attr, ngModelCtrl) {
+		      function fromUser(text) {
+		        var transformedInput = text.replace(/[^0-9]/g, '');
+		        console.log(transformedInput);
+		        if(transformedInput !== text) {
+		            ngModelCtrl.$setViewValue(transformedInput);
+		            ngModelCtrl.$render();
+		        }
+		        return transformedInput;
+		      }
+		      ngModelCtrl.$parsers.push(fromUser);
+		    }
+		  }; 
+		});
 	
 	angular.module('myApp').directive('onCarouselChange', function ($parse) {
 		return {
@@ -163,12 +151,19 @@
 		};
 	});
 	
-	angular.module('myApp').controller('HomeController', 
-    		function ($scope, $location, appService, webId) {
+	angular.module('myApp').controller('HomeController', function ($scope, $location, appService, webId) {
 		$scope.appService = {
 			deviceOS : appService.deviceOS
 		};
 		
+//		$scope.spinneractive = false;
+//		$rootScope.$on('us-spinner:spin', function(event, key) {
+//			$scope.spinneractive = true;
+//		});
+//
+//		$rootScope.$on('us-spinner:stop', function(event, key) {
+//			$scope.spinneractive = false;
+//		});
 		$scope.getBackground = function() {
 			return webId.web.MAIN_BG_STYLE;
 		};

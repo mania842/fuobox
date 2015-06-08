@@ -7,8 +7,10 @@
 	"ALLOW_PAYMENT" : true,
 	"PAYMENT_INFO" : {
 		"TAX": ".06",
-		"PAYPAL_ID" : "dev.yong842@gmail.com",
-		"DELIVERY_CHARGE" : 2.00
+		"PAYPAL_ID" : "markpschung@gmail.com",
+		"EMAIL" : "markpschung@gmail.com",
+		"DELIVERY_CHARGE" : 2.00,
+		"DELIVERY_LIMIT_MILE" : 1.5
 	},
 	"STYLE" : {
 		"TITLE": {
@@ -139,7 +141,7 @@
 			"ENG" : "Pork Cutlet Pizza",
 			"IMG" : "CUTLET1",
 			"EXT" : "jpg",
-			"PRICE" : 7.99,
+			"PRICE" : 11.99,
 			"DETAIL_KOR" : "BBQ rib 과 더불어 저희 퓨전오렌지의 주력상품...!!!  돈까스가 pizza dough 를 대신 합니다. 그 위에 야채와 새우, 브로콜리, 모짜렐라 치즈가 듬뿍.",
 			"DETAIL_ENG" : "",
 			"PARENT_STATE" : "CUTLET"
