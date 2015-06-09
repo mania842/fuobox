@@ -205,8 +205,10 @@
 			});
     		
     		angular.forEach(service.web.ITEMS, function(item) {
-    			item.TITLE = isKor ? item.KOR : item.ENG;
-    			item.DETAIL = isKor ? item.DETAIL_KOR : item.DETAIL_ENG;
+    			if (item.TYPE != 'COMBO') {
+	    			item.TITLE = isKor ? item.KOR : item.ENG;
+	    			item.DETAIL = isKor ? item.DETAIL_KOR : item.DETAIL_ENG;
+    			}
 			});
     		
     		$rootScope.$broadcast('service.webId:lang:updated', service.getWeb());

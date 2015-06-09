@@ -135,6 +135,30 @@
 			"DETAIL_ENG" : "sweet & spicy homemade chicken",
 			"PARENT_STATE" : "CHICKEN"
 		},
+		"CHICKEN4" : {
+			"TITLE" : "7 pcs. Fried Chicken",
+			"KOR" : "프라이드 치킨 7 조각.",
+			"ENG" : "7 pcs. Fried Chicken",
+			"IMG" : "CHICKEN1",
+			"EXT" : "jpg",
+			"PRICE" : 9.99,
+			"DETAIL" : "7 pcs. Fried Chicken",
+			"DETAIL_KOR" : "일반 프랜차이즈 치킨과 견주어 손색없는 자신감으로 모십니다. 냉동닭이 아닌 생닭 그대로 만든 양념치킨",
+			"DETAIL_ENG" : "7 pcs. Fried Chicken",
+			"PARENT_STATE" : "COMBO"
+		},
+		"CHICKEN5" : {
+			"TITLE" : "8 pcs. Chicken Wings",
+			"KOR" : "치킨 윙 8 조각.",
+			"ENG" : "8 pcs. Chicken Wings",
+			"IMG" : "CHICKEN2",
+			"EXT" : "jpg",
+			"PRICE" : 8.99,
+			"DETAIL" : "8 pcs. Chicken Wings",
+			"DETAIL_KOR" : "일반 윙가게와 달리 미디엄 사이즈로 만듭니다.",
+			"DETAIL_ENG" : "8 pcs. Chicken Wings",
+			"PARENT_STATE" : "COMBO"
+		},
 		"CUTLET1" : {
 			"TITLE" : "Pork Cutlet Pizza",
 			"KOR" : "피자 돈까스",
@@ -182,6 +206,18 @@
 			"DETAIL_ENG" : "comes  w/ steamed rice",
 			"PARENT_STATE" : "CUTLET"
 		},
+		"CUTLET5" : {
+			"TITLE" : "Pork Cutlet (2)",
+			"KOR" : "돈까스 (2)",
+			"ENG" : "Pork Cutlet (2)",
+			"IMG" : "CUTLET2",
+			"EXT" : "jpg",
+			"PRICE" : 7.99,
+			"DETAIL" : "Pork Cutlet (2)",
+			"DETAIL_KOR" : "Pork Cutlet (2)",
+			"DETAIL_ENG" : "Pork Cutlet (2)",
+			"PARENT_STATE" : "COMBO"
+		},
 		"BBQ1" : {
 			"TITLE" : "Pork Rib",
 			"KOR" : "돼지 갈비",
@@ -225,7 +261,7 @@
 			"DETAIL" : "Korean style spicy(& sweet)",
 			"DETAIL_KOR" : "국물이 탁하지 않게 깔끔하게 모십니다",
 			"DETAIL_ENG" : "Korean style spicy(& sweet)",
-			"PARENT_STATE" : "BBQ"
+			"PARENT_STATE" : "SIDES"
 		},
 		"SIDES2" : {
 			"TITLE" : "House Fried Rice",
@@ -237,7 +273,7 @@
 			"DETAIL" : "vegetable, shrimp, meat (chicken, beef)",
 			"DETAIL_KOR" : "남부 미국인들의 입맛에 맞춘 야채 볶음밥",
 			"DETAIL_ENG" : "vegetable, shrimp, meat (chicken, beef)",
-			"PARENT_STATE" : "BBQ"
+			"PARENT_STATE" : "SIDES"
 		},
 		"SIDES3" : {
 			"TITLE" : "Spicy Rice Cake",
@@ -249,13 +285,27 @@
 			"DETAIL" : "w/ fish cake",
 			"DETAIL_KOR" : "매워도 푸짐한 맛 때문에 다시찾게 되는.....",
 			"DETAIL_ENG" : "w/ fish cake",
-			"PARENT_STATE" : "BBQ"
+			"PARENT_STATE" : "SIDES"
+		},
+		"SIDES4" : {
+			"TITLE" : "Spicy Rice Cake (L)",
+			"KOR" : "떡볶이 (L)",
+			"ENG" : "Spicy Rice Cake (L)",
+			"IMG" : "SIDES3",
+			"EXT" : "jpg",
+			"PRICE" : 7.99,
+			"DETAIL" : "Spicy Rice Cake (L)",
+			"DETAIL_KOR" : "매워도 푸짐한 맛 때문에 다시찾게 되는.....",
+			"DETAIL_ENG" : "Spicy Rice Cake (L)",
+			"PARENT_STATE" : "COMBO"
 		},
 		"COMBO_A" : {
 			"TITLE" : "Combo A",
 			"KOR" : "콤보 A",
 			"ENG" : "Combo A",
 			"IMG" : "",
+			"TYPE" : "COMBO",
+			"DETAIL" : ["BBQ1", "CUTLET3", "SIDES3", "SIDES2"],
 			"PRICE" : 29.99,
 			"PARENT_STATE" : "COMBO"
 		},
@@ -264,6 +314,8 @@
 			"KOR" : "콤보 B",
 			"ENG" : "Combo B",
 			"IMG" : "",
+			"TYPE" : "COMBO",
+			"DETAIL" : ["CHICKEN4", "BBQ2", "CUTLET5", "SIDES4"],
 			"PRICE" : 39.99,
 			"PARENT_STATE" : "COMBO"
 		},
@@ -272,6 +324,8 @@
 			"KOR" : "콤보 C",
 			"ENG" : "Combo C",
 			"IMG" : "",
+			"TYPE" : "COMBO",
+			"DETAIL" : ["BBQ2", "CHICKEN5", "CHICKEN3", "SIDES2", "SIDES3"],
 			"PRICE" : 49.99,
 			"PARENT_STATE" : "COMBO"
 		}
